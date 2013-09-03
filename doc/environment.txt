@@ -1,0 +1,6 @@
+To work with this solution, you must enable NuGet's "Automatic Package Restore"
+feature in Visual Studio.  Go to Options -> Package Manager -> General, and
+check "Allow NuGet to download missing packages during build."
+
+Source:
+http://docs.nuget.org/docs/workflows/using-nuget-without-committing-packages

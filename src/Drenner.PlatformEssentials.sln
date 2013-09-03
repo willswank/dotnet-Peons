@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drenner.PlatformEssentials", "Drenner.PlatformEssentials\Drenner.PlatformEssentials.csproj", "{98D6761C-F66B-4DD4-8080-2A093A17CC82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8CCFA034-7DF3-417A-9AE8-E80489412390}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drenner.PlatformEssentials.Tests", "Drenner.PlatformEssentials.Tests\Drenner.PlatformEssentials.Tests.csproj", "{F6ACD497-DF69-4306-9E2A-07C10FE299EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98D6761C-F66B-4DD4-8080-2A093A17CC82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98D6761C-F66B-4DD4-8080-2A093A17CC82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98D6761C-F66B-4DD4-8080-2A093A17CC82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98D6761C-F66B-4DD4-8080-2A093A17CC82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6ACD497-DF69-4306-9E2A-07C10FE299EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6ACD497-DF69-4306-9E2A-07C10FE299EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6ACD497-DF69-4306-9E2A-07C10FE299EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6ACD497-DF69-4306-9E2A-07C10FE299EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
