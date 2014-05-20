@@ -84,10 +84,10 @@ An alternate syntax that maps to either Dummies.___s or GetEnumValues<T>().
 	var integers = Dummies.Of<int>()
 	var colors = Dummies.Of<ConsoleColor>();
 	
-### IEnumerable value type extensions ###
+### IEnumerable<T>.AndNull() ###
 
-Allows easy conversion from an IEnumerable of a value type to an IEnumerable of
-that value type as nullable.
+Converts an IEnumerable of a value type to an IEnumerable of that value type as
+nullable.
 
 	int? intsAndNull = Dummies.Ints.AndNull();
 	HttpMethod methodsAndNull = Dummies.Of<HttpMethod>().AndNull();
