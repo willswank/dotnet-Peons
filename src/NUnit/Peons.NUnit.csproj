@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSets\DataRowExtensions.cs" />
+    <Compile Include="DataSets\DataTableExtensions.cs" />
     <Compile Include="Dummies.cs" />
     <Compile Include="IEnumerableValueTypeExtensions.cs" />
     <Compile Include="Internals\Builder.cs" />

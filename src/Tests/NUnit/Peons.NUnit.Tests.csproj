@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataSets\DataTableExtensionsTests.cs" />
+    <Compile Include="DataSets\DataRowExtensionsTests.cs" />
     <Compile Include="DummiesTests.cs" />
     <Compile Include="IEnumerableValueTypeExtensionsTests.cs" />
     <Compile Include="Internals\BuilderTests.cs" />
