@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArgOutOfRangeExceptionTests.cs" />
+    <Compile Include="ArgExceptionTests.cs" />
+    <Compile Include="Internals\ExpressionExtensionsTests.cs" />
     <Compile Include="UnrecognizedValueExceptionTests.cs" />
     <Compile Include="ArgNullExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

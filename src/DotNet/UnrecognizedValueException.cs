@@ -24,7 +24,7 @@ namespace Peons.DotNet
 	/// exception for an unanticipated input value.
 	/// </remarks>
 	public class UnrecognizedValueException<TTarget, TValue>
-			: ArgumentException
+			: ApplicationException
 	{
 		public const string MESSAGE_FORMAT
 				= "The value \"{0}\" has not been accounted for for type {1}.";

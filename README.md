@@ -8,17 +8,28 @@ Peons.DotNet
 
 Helpers targeting the base platform 
 
-### ArgNullException ###
+### Argument exceptions ###
 
-The built-in ArgumentNullException requires the parameter name to be passed as a
-string.  ArgNullException wraps ArgumentNullException and discerns the argument
-name from its local variable name.  This makes refactoring more reliable.
+The built-in argument exceptions require the parameter name to be passed as a
+string.  Peon's "Arg" exceptions wraps the built-in exceptions and discern the
+argument name from its local variable name.  This makes refactoring more
+reliable.
 
 	public void Send(string message)
 	{
 		if (message == null)
 		{
 			throw new ArgNullException(() => message);
+		}
+		if (message.Length > 50)
+		{
+			throw new ArgOutOfRangeException(() => message,
+					"The length must not exceed 50 characters");
+		}
+		if (message.Contains("it"))
+		{
+			throw new ArgException("The Knights Who Say 'Ni' disapprove.",
+					() => message);
 		}
 		// ...
 	}
