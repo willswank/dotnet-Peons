@@ -129,3 +129,21 @@ Can also test property values assigned by the constructor.
 		.WithInputs(products)
 		.SetVia(v => order = new Order(v))
 		.GotVia(() => order.Product);
+		
+Peons.NUnit.DataSets
+--------------------
+
+Building dummy data in DataSets is a pain.  Peons.NUnit.DataSets has chainable
+extension methods to assist.  Once you've defined a table and columns, you can
+insert data as follows:
+
+	dummyDataSet.Tables["Beer"]
+		.AddRow()
+		.FillValueTypeDefaults()
+		.Set("id", 1)
+		.Set("name", "Asahi")
+		.Set("price", 8.99);
+		
+`AddRow()` creates a row and adds it back to the table.
+`FillValueTypeDefaults()` ensures default, non-DBNull values for all of the
+row's value-type columns.  `Set()` is concise and converts `null` to `DBNull`.
