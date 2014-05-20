@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace Wordsworth.Peons.DotNet
+namespace Peons.DotNet
 {
 	[TestFixture]
 	class StringExtensionMethodsTests

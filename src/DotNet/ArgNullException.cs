@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Wordsworth.Peons.DotNet
+namespace Peons.DotNet
 {
     /// <summary>
     /// The exception thrown when a method recieves an unsupported null argument

@@ -1,4 +1,4 @@
-﻿namespace Wordsworth.Peons.DotNet
+﻿namespace Peons.DotNet
 {
 	public static class StringExtensionMethods
 	{
