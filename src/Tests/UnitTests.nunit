@@ -1,7 +1,9 @@
 ﻿<NUnitProject>
   <Settings activeconfig="Debug" />
   <Config name="Debug" binpathtype="Auto">
-    <assembly path="Drenner.PlatformEssentials.Tests\bin\Debug\Drenner.PlatformEssentials.Tests.dll" />
+    <assembly path="DotNet\bin\Debug\Wordsworth.Peons.DotNet.Tests.dll" />
   </Config>
-  <Config name="Release" binpathtype="Auto" />
+  <Config name="Release" binpathtype="Auto">
+    <assembly path="DotNet\bin\Release\Wordsworth.Peons.DotNet.Tests.dll" />
+  </Config>
 </NUnitProject>
