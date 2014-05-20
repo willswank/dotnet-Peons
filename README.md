@@ -1,7 +1,9 @@
 Peons
 =====
 
-Lightweight helper classes for the .NET platform
+Peons are lightweight helper classes for the .NET platform.  They smooth over
+syntactically awkward parts, and the provide shortcuts for common algorithms,
+allowing your code to say what it means more eloquently.
 
 Peons.DotNet
 ------------
