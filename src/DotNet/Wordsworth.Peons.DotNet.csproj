@@ -7,8 +7,8 @@
     <ProjectGuid>{98D6761C-F66B-4DD4-8080-2A093A17CC82}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Drenner.PlatformEssentials</RootNamespace>
-    <AssemblyName>Drenner.PlatformEssentials</AssemblyName>
+    <RootNamespace>Wordsworth.Peons.DotNet</RootNamespace>
+    <AssemblyName>Wordsworth.Peons.DotNet</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

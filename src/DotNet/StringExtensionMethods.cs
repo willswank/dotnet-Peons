@@ -1,4 +1,4 @@
-﻿namespace Drenner.PlatformEssentials
+﻿namespace Wordsworth.Peons.DotNet
 {
 	public static class StringExtensionMethods
 	{

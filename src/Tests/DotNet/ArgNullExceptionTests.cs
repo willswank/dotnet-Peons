@@ -2,7 +2,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Drenner.PlatformEssentials
+namespace Wordsworth.Peons.DotNet
 {
     [TestFixture]
     public class ArgNullExceptionTests

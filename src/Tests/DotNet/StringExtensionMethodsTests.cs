@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace Drenner.PlatformEssentials
+namespace Wordsworth.Peons.DotNet
 {
 	[TestFixture]
 	class StringExtensionMethodsTests

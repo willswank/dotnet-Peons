@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drenner.PlatformEssentials", "Drenner.PlatformEssentials\Drenner.PlatformEssentials.csproj", "{98D6761C-F66B-4DD4-8080-2A093A17CC82}"
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wordsworth.Peons.DotNet", "DotNet\Wordsworth.Peons.DotNet.csproj", "{98D6761C-F66B-4DD4-8080-2A093A17CC82}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8CCFA034-7DF3-417A-9AE8-E80489412390}"
 	ProjectSection(SolutionItems) = preProject
@@ -10,7 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8CCFA0
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drenner.PlatformEssentials.Tests", "Drenner.PlatformEssentials.Tests\Drenner.PlatformEssentials.Tests.csproj", "{F6ACD497-DF69-4306-9E2A-07C10FE299EC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wordsworth.Peons.DotNet.Tests", "Tests\DotNet\Wordsworth.Peons.DotNet.Tests.csproj", "{F6ACD497-DF69-4306-9E2A-07C10FE299EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNet", "DotNet", "{750E2345-5971-4B3E-96E5-0CB81311087E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DotNet", "DotNet", "{CC09153A-E419-493F-96E6-F38F816887C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,5 +37,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{98D6761C-F66B-4DD4-8080-2A093A17CC82} = {750E2345-5971-4B3E-96E5-0CB81311087E}
+		{CC09153A-E419-493F-96E6-F38F816887C5} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
+		{F6ACD497-DF69-4306-9E2A-07C10FE299EC} = {CC09153A-E419-493F-96E6-F38F816887C5}
 	EndGlobalSection
 EndGlobal
