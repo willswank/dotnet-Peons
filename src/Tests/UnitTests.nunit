@@ -2,8 +2,10 @@
   <Settings activeconfig="Debug" />
   <Config name="Debug" binpathtype="Auto">
     <assembly path="DotNet\bin\Debug\Peons.DotNet.Tests.dll" />
+    <assembly path="NUnit\bin\Debug\Peons.NUnit.Tests.dll" />
   </Config>
   <Config name="Release" binpathtype="Auto">
     <assembly path="DotNet\bin\Release\Peons.DotNet.Tests.dll" />
+    <assembly path="NUnit\bin\Release\Peons.NUnit.Tests.dll" />
   </Config>
 </NUnitProject>

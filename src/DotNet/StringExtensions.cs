@@ -1,6 +1,6 @@
 ﻿namespace Peons.DotNet
 {
-	public static class StringExtensionMethods
+	public static class StringExtensions
 	{
 		public static bool IsNullOrWhiteSpace(this string value)
 		{

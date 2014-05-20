@@ -4,7 +4,7 @@ using System;
 namespace Peons.DotNet
 {
 	[TestFixture]
-	class StringExtensionMethodsTests
+	class StringExtensionsTests
 	{
 		[Test]
 		public void IsNullOrWhiteSpace_Null_True()
