@@ -10,6 +10,7 @@ namespace Peons.NUnit
         private const string COMPLEX_WHITESPACE_STRING = "\t   ";
         private const string SIMPLE_DUMMY_STRING = "foobar";
         private const string COMPLEX_DUMMY_STRING = " foo!@#123() Ðë®¶\t";
+		private const string LONG_DUMMY_STRING = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
 
         public static readonly IEnumerable<string> Strings;
         public static readonly IEnumerable<int> Ints;
@@ -35,7 +36,8 @@ namespace Peons.NUnit
                 SIMPLE_DUMMY_STRING,
                 COMPLEX_DUMMY_STRING,
                 SIMPLE_WHITESPACE_STRING,
-                COMPLEX_WHITESPACE_STRING
+                COMPLEX_WHITESPACE_STRING,
+				LONG_DUMMY_STRING
             };
 
             Ints = new int[]
@@ -114,7 +116,8 @@ namespace Peons.NUnit
                 SIMPLE_DUMMY_STRING,
                 COMPLEX_DUMMY_STRING,
                 SIMPLE_WHITESPACE_STRING,
-                COMPLEX_WHITESPACE_STRING
+                COMPLEX_WHITESPACE_STRING,
+				LONG_DUMMY_STRING
 			};
 
 			NullOrEmptyStrings = new string[]
@@ -141,7 +144,8 @@ namespace Peons.NUnit
             VisibleStrings = new String[]
             {
                 SIMPLE_DUMMY_STRING,
-                COMPLEX_DUMMY_STRING
+                COMPLEX_DUMMY_STRING,
+				LONG_DUMMY_STRING
             };
         }
 
