@@ -1,4 +1,4 @@
-DotNet_PlatformEssentials
-=========================
+Peons
+=====
 
-Essentials for the .NET platform, including a strongly-typed ArgNullException and extension methods for strings
+Essential helpers for the .NET platform
