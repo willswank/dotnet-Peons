@@ -11,7 +11,7 @@ Helpers targeting the base platform
 ### Argument exceptions ###
 
 The built-in argument exceptions require the parameter name to be passed as a
-string.  Peon's "Arg" exceptions wraps the built-in exceptions and discern the
+string.  Peon's "Arg" exceptions wrap the built-in exceptions and discern the
 argument name from its local variable name.  This makes refactoring more
 reliable.
 
