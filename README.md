@@ -1,12 +1,12 @@
-Peons
-=====
+Peons libraries
+===============
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
 syntactically awkward parts, and the provide shortcuts for common algorithms,
 allowing your code to say what it means more eloquently.
 
-Peons.DotNet
-------------
+Peons
+-----
 
 Helpers targeting the base platform 
 
@@ -149,3 +149,13 @@ insert data as follows:
 `AddRow()` creates a row and adds it back to the table.
 `FillValueTypeDefaults()` ensures default, non-DBNull values for all of the
 row's value-type columns.  `Set()` is concise and converts `null` to `DBNull`.
+
+Peons.Web
+---------
+
+Using `HttpContext.Current` to obtain the HTTP context violates Inversion of
+Control and renders methods untestable.  `HttpContextProvider` wraps this
+functionality with an interface and returns a mockable `HttpContextWrapper`.
+
+	IHttpContextProvider provider = new HttpContextProvider();
+	HttpContextWrapper context = provider.GetCurrentHttpContext();
