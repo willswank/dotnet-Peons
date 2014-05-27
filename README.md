@@ -155,7 +155,7 @@ Peons.Web
 
 Using `HttpContext.Current` to obtain the HTTP context violates Inversion of
 Control and renders methods untestable.  `HttpContextProvider` wraps this
-functionality with an interface and returns a mockable `HttpContextWrapper`.
+functionality with an interface and returns a mockable `HttpContextBase`.
 
 	IHttpContextProvider provider = new HttpContextProvider();
-	HttpContextWrapper context = provider.GetCurrentHttpContext();
+	HttpContextBase context = provider.GetCurrentHttpContext();

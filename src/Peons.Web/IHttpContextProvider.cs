@@ -4,6 +4,6 @@ namespace Peons.Web
 {
 	public interface IHttpContextProvider
 	{
-		HttpContextWrapper GetCurrentHttpContext();
+		HttpContextBase GetCurrentHttpContext();
 	}
 }
