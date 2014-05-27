@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Peons.DotNet.Tests")]
+[assembly: AssemblyTitle("Peons.Web")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Peons.DotNet.Tests")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyProduct("Peons.Web")]
+[assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f60ee93e-219d-4785-beb7-e0e32ff364ea")]
+[assembly: Guid("9592f88d-e49e-465e-ae17-d328f31f9a9c")]
 
 // Version information for an assembly consists of the following four values:
 //

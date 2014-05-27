@@ -7,8 +7,8 @@
     <ProjectGuid>{98D6761C-F66B-4DD4-8080-2A093A17CC82}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Peons.DotNet</RootNamespace>
-    <AssemblyName>Peons.DotNet</AssemblyName>
+    <RootNamespace>Peons</RootNamespace>
+    <AssemblyName>Peons</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

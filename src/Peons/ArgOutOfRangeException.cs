@@ -1,8 +1,8 @@
-﻿using Peons.DotNet.Internals;
+﻿using Peons.Internals;
 using System;
 using System.Linq.Expressions;
 
-namespace Peons.DotNet
+namespace Peons
 {
 	/// <summary>
 	/// An exception indicating that the value of an object is outside the range

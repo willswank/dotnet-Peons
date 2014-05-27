@@ -1,4 +1,4 @@
-﻿namespace Peons.DotNet
+﻿namespace Peons
 {
 	public static class StringExtensions
 	{

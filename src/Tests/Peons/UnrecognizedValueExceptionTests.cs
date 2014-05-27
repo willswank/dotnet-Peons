@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Peons.DotNet
+namespace Peons
 {
     [TestFixture]
 	public class UnrecognizedValueExceptionTests

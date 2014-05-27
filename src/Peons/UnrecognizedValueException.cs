@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Peons.DotNet
+namespace Peons
 {
 	/// <summary>
 	/// An exception indicating that a value was not accounted for while

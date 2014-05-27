@@ -1,8 +1,8 @@
-﻿using Peons.DotNet.Internals;
+﻿using Peons.Internals;
 using System;
 using System.Linq.Expressions;
 
-namespace Peons.DotNet
+namespace Peons
 {
 	/// <summary>
 	/// An exception indicating that a method does not accept null for an

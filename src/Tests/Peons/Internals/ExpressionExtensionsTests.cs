@@ -2,7 +2,7 @@
 using System;
 using System.Linq.Expressions;
 
-namespace Peons.DotNet.Internals
+namespace Peons.Internals
 {
 	[TestFixture]
 	class ExpressionExtensionsTests
