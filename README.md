@@ -97,6 +97,15 @@ An alternate syntax that maps to either Dummies.___s or GetEnumValues<T>().
 	var integers = Dummies.Of<int>()
 	var colors = Dummies.Of<ConsoleColor>();
 	
+#### For... ####
+
+Some solutions may find it useful to attach dummies of their own, proprietary
+classes.  This can be accomplished using extension methods and the `Dummies`
+instance exposed by `Dummies.For`.
+
+	// Given an extension method Whatever and class Whatever
+	IEnumerable<Whatever> dummies = Dummies.For.Whatever;
+	
 ### IEnumerable<T>.AndNull() ###
 
 Converts an IEnumerable of a value type to an IEnumerable of that value type as
