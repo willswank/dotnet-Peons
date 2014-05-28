@@ -18,6 +18,13 @@ namespace Peons.NUnit
 		}
 
 		[Test]
+		public void For_ReturnsDummiesInstance()
+		{
+			var output = Dummies.For as Dummies;
+			Assert.IsNotNull(output);
+		}
+
+		[Test]
 		public void Of_SupportedType_ReturnsDummies()
 		{
 			var output = Dummies.Of<int>();

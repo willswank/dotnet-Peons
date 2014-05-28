@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Peons.NUnit
 {
-    public static class Dummies
+    public class Dummies
     {
 		private const string SIMPLE_WHITESPACE_STRING = " ";
         private const string COMPLEX_WHITESPACE_STRING = "\t   ";
@@ -21,14 +21,20 @@ namespace Peons.NUnit
         public static readonly IEnumerable<DateTime> DateTimes;
         public static readonly IEnumerable<object> Objects;
 
+		private static readonly Dummies extendableInstance;
+
 		public static readonly IEnumerable<string> NonNullStrings;
         public static readonly IEnumerable<string> NullEmptyOrWhiteSpaceStrings;
 		public static readonly IEnumerable<string> NullOrEmptyStrings;
 		public static readonly IEnumerable<string> NullOrWhiteSpaceStrings;
         public static readonly IEnumerable<string> VisibleStrings;
 
+		private Dummies() { }
+
         static Dummies()
         {
+			extendableInstance = new Dummies();
+
             Strings = new string[]
             {
                 null,
@@ -153,6 +159,14 @@ namespace Peons.NUnit
         {
             return Enum.GetValues(typeof(T)).Cast<T>();
         }
+
+		/// <summary>
+		/// An instance of Dummies for extension methods
+		/// </summary>
+		public static Dummies For
+		{
+			get { return extendableInstance; }
+		}
 
 		public static IEnumerable<T> Of<T>()
 		{
