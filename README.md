@@ -159,6 +159,13 @@ insert data as follows:
 `FillValueTypeDefaults()` ensures default, non-DBNull values for all of the
 row's value-type columns.  `Set()` is concise and converts `null` to `DBNull`.
 
+Peons.NUnit.NodaTime
+--------------------
+
+Provides dummies of NodaTime Instants.
+
+	IEnumerable<Instant> dummies = Dummies.For.Instant();
+
 Peons.Web
 ---------
 
