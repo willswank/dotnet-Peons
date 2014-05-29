@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ArgOutOfRangeExceptionTests.cs" />
     <Compile Include="ArgExceptionTests.cs" />
+    <Compile Include="ArgNotVisibleExceptionTests.cs" />
     <Compile Include="Internals\ExpressionExtensionsTests.cs" />
     <Compile Include="UnrecognizedValueExceptionTests.cs" />
     <Compile Include="ArgNullExceptionTests.cs" />
@@ -53,6 +54,10 @@
     <Compile Include="StringExtensionsTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Peons.NUnit\Peons.NUnit.csproj">
+      <Project>{de60d72b-a098-4efa-b33f-8dec7b3633ad}</Project>
+      <Name>Peons.NUnit</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Peons\Peons.csproj">
       <Project>{98d6761c-f66b-4dd4-8080-2a093a17cc82}</Project>
       <Name>Peons</Name>

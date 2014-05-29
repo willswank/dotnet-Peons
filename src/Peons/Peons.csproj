@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArgException.cs" />
+    <Compile Include="ArgNotVisibleException.cs" />
     <Compile Include="ArgOutOfRangeException.cs" />
     <Compile Include="ArgNullException.cs" />
     <Compile Include="Internals\ExpressionExtensions.cs" />

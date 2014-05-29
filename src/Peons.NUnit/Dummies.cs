@@ -27,6 +27,7 @@ namespace Peons.NUnit
         public static readonly IEnumerable<string> NullEmptyOrWhiteSpaceStrings;
 		public static readonly IEnumerable<string> NullOrEmptyStrings;
 		public static readonly IEnumerable<string> NullOrWhiteSpaceStrings;
+		public static readonly IEnumerable<string> WhiteSpaceStrings;
         public static readonly IEnumerable<string> VisibleStrings;
 
 		private Dummies() { }
@@ -145,6 +146,12 @@ namespace Peons.NUnit
 				null,
                 SIMPLE_WHITESPACE_STRING,
                 COMPLEX_WHITESPACE_STRING
+			};
+
+			WhiteSpaceStrings = new string[]
+			{
+				SIMPLE_WHITESPACE_STRING,
+				COMPLEX_WHITESPACE_STRING
 			};
 
             VisibleStrings = new String[]
