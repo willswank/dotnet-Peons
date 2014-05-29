@@ -13,35 +13,48 @@ namespace Peons
 	/// </remarks>
 	public class ArgNotVisibleException : ArgOutOfRangeException
 	{
-		public ArgNotVisibleException(Expression<Func<object>> paramSelector, string actualValue)
-			: base(paramSelector, actualValue, SelectMessage(paramSelector, actualValue))
+		public ArgNotVisibleException(Expression<Func<object>> paramSelector)
+			: this(paramSelector, paramSelector.Compile()())
 		{
+		}
+
+		private ArgNotVisibleException(Expression<Func<object>> paramSelector, object value)
+			: base(paramSelector, value, SelectMessage(paramSelector.GetMemberName(), value))
+		{
+
 		}
 
 		private const string MESSAGE_FORMAT = "The argument, {0}, must contain visible characters but was {1}.";
 
-		private static string SelectMessage(Expression<Func<object>> paramSelector, string value)
+		private static string SelectMessage(string memberName, object value)
 		{
-			if (value.HasVisibleCharacters())
-			{
-				throw new ArgOutOfRangeException(() => value, value,
-						"An ArgStringNotVisibleException was thrown for a visible value.");
-			}
-			var name = paramSelector.GetMemberName();
 			string valueCategory;
 			if (value == null)
 			{
 				valueCategory = "null";
 			}
-			else if (value == string.Empty)
-			{
-				valueCategory = "empty";
-			}
 			else
 			{
-				valueCategory = "white space";
+				var actualValue = value.ToString();
+				if (actualValue.HasVisibleCharacters())
+				{
+					throw new ArgOutOfRangeException(() => value, actualValue,
+							"An ArgStringNotVisibleException was thrown for a visible value.");
+				}
+				if (actualValue == null)
+				{
+					valueCategory = "null";
+				}
+				else if (actualValue == string.Empty)
+				{
+					valueCategory = "empty";
+				}
+				else
+				{
+					valueCategory = "white space";
+				}
 			}
-			var message = string.Format(MESSAGE_FORMAT, name, valueCategory);
+			var message = string.Format(MESSAGE_FORMAT, memberName, valueCategory);
 			return message;
 		}
 	}
