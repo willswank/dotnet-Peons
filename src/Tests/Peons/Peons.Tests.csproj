@@ -47,6 +47,7 @@
     <Compile Include="ArgOutOfRangeExceptionTests.cs" />
     <Compile Include="ArgExceptionTests.cs" />
     <Compile Include="ArgNotVisibleExceptionTests.cs" />
+    <Compile Include="Collections\ReadOnlyDictionaryTests.cs" />
     <Compile Include="Internals\ExpressionExtensionsTests.cs" />
     <Compile Include="UnrecognizedValueExceptionTests.cs" />
     <Compile Include="ArgNullExceptionTests.cs" />
