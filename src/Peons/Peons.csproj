@@ -46,6 +46,7 @@
     <Compile Include="ArgOutOfRangeException.cs" />
     <Compile Include="ArgNullException.cs" />
     <Compile Include="IClock.cs" />
+    <Compile Include="IEnumerableExtensions.cs" />
     <Compile Include="Internals\ExpressionExtensions.cs" />
     <Compile Include="Collections\IReadOnlyCollection.cs" />
     <Compile Include="Collections\IReadOnlyDictionary.cs" />
