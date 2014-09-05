@@ -6,19 +6,24 @@ namespace Peons
     class ObjectExtensionsTests
     {
         [Test]
-        public void Exists_Null_False()
+        public void Has_FunctionResultingInNonNull_True()
         {
-            object input = null;
-            var output = input.Exists();
-            Assert.IsFalse(output);
+            var input = new DummyClass { DummyProperty = new object() };
+            var output = input.Has(i => i.DummyProperty);
+            Assert.IsTrue(output);
         }
 
         [Test]
-        public void Exists_NonNull_True()
+        public void Has_FunctionResultingInNull_False()
         {
-            object input = new object();
-            var output = input.Exists();
-            Assert.IsTrue(output);
+            var input = new DummyClass();
+            var output = input.Has(i => i.DummyProperty);
+            Assert.IsFalse(output);
+        }
+
+        class DummyClass
+        {
+            public object DummyProperty { get; set; }
         }
     }
 }

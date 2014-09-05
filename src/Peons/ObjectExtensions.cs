@@ -4,9 +4,9 @@ namespace Peons
 {
     public static class ObjectExtensions
     {
-        public static bool Exists(this object input)
+        public static bool Has<T>(this T input, Func<T, object> selector) where T : class
         {
-            return input != null;
+            return selector(input) != null;
         }
     }
 }
