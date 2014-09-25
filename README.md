@@ -2,8 +2,8 @@ Peons libraries
 ===============
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
-syntactically awkward parts, and the provide shortcuts for common algorithms,
-allowing your code to say what it means more eloquently.
+awkward syntax and encapsulate common algorithms, so your code can speak more
+eloquently.
 
 Peons
 -----
@@ -62,6 +62,173 @@ String extensions reverse the language of `string.IsNullOrEmpty` and
 	message.IsNullOrEmpty()
 	message.IsNullOrWhiteSpace()
 	message.HasVisibleCharacters() // inverse of IsNullOrWhiteSpace()
+    
+### Object extensions ###
+
+When an object's property may be null, and it's a "has-a" relationship, the code
+can profess this relationship using `Has()`.
+
+    person.Has(p => p.Nickname)
+    
+### Clock ###
+
+Your code should not access the local clock directly.  Inject this dependency as
+an `IClock` so you can test your time-sensitive algorithm.
+
+    IClock clock = new LocalClock(); // inject this
+    ...
+    var currentTime = clock.Now();
+    
+Note: Although this is inferior to NodaTime, it's easier to retrofit into
+existing products.
+
+Peons.Collections
+-----------------
+
+### Read-only set ###
+
+A read-only set is a proper mathematical set; in other words, an enumerable that
+contains no duplicates.
+
+    var items = new int[] { 4, 8, 15, 16, 23, 42 };
+    IReadOnlySet<int> = new ReadOnlyHashSet(items);
+    
+### Read-only dictionary ###
+
+A read-only dictionary is, well, just a frozen dictionary.
+
+    var writableDictionary = new Dictionary<string,int>
+    {
+        { "foo", 4 },
+        { "bar", 2 }
+    };
+    IReadOnlyDictionary<string, int> frozenDictionary
+        = new ReadOnlyDictionary<string, int>(writableDictionary);
+        
+All read-only sets and dictionaries are also `IReadOnlyCollection`s.
+
+Peons.Specification
+-------------------
+
+### Specifications ###
+
+A specification is a rule that either passes or files when applied to an object.
+Implement your own business rules as `ISpecification`s to gain the syntactic
+benefits:
+
+    public class OldSpecification : ISpecification<Dog>
+    {
+        public bool IsSatisfiedBy(Dog candidate)
+        {
+            return candidate.Age > 13;
+        }
+    }
+
+    public class AmputeeSpecification : ISpecification<Dog>
+    {
+        public bool IsSatisfiedBy(Dog candidate)
+        {
+            return candidate.LegCount < 4;
+        }
+    }
+
+    public class SquirrelMurdererSpecification : ISpecification<Dog>
+    {
+        public bool IsSatisfiedBy(Dog candidate)
+        {
+            return candidate.MurderedSquirrelCount > 0;
+        }
+    }
+
+    public class CatMurdererSpecification : ISpecification<Dog>
+    {
+        public bool IsSatisfiedBy(Dog candidate)
+        {
+            return candidate.MurderedCatCount > 0;
+        }
+    }
+    
+    // ...
+
+    var oldSpecification = new OldSpecification();
+    var amputeeSpecification = new AmputeeSpecification();
+    var squirrelMurdererSpecification = new SquirrelMurdererSpecification();
+    var catMurdererSpecification = new CatMurdererSpecification();
+    
+    if (oldSpecification.IsSatisfiedBy(myDog))
+    {
+        Console.Write("Just lay around.");
+    }
+    if (amputeeSpecification.Not().IsSatisfiedBy(myDog))
+    {
+        Console.Write("Time for a walk.");
+    }
+    if (oldSpecification.And(amputeeSpecification).IsSatisfiedBy(myDog))
+    {
+        Console.Write("Poor dog...");
+    }
+    if (squirrelMurdererSpecification.Or(catMurdererSpecification).IsSatisfiedBy(myDog))
+    {
+        Console.Write("Vicious!");
+    }
+    
+A `SpecificationSeries` lets you define an ordered list of specifications which,
+when unsatisfied, report the earliest unsatisfied specification.
+
+    public class FriendlyTabbyCatSpecifications : SpecificationSeries<Pet>
+    {
+        public FriendlyTabbyCatSpecifications() : base(new ISpecification<Pet>[]
+        {
+            new CatSpecification(),
+            new TabbySpecification(),
+            new FriendlySpecification()
+        }){}
+    }
+    
+    // ...
+    
+    var specifications = new FriendlyTabbyCatSpecifications();
+    var whyNot = specifications.GetFirstUnsatisfiedBy(myPet);
+    if (whyNot is CatSpecification)
+    {
+        Console.Write("Not even a cat!");
+    }
+    else if (whyNot is TabbySpecification)
+    {
+        Console.Write("Not a tabby, yo.");
+    }
+    else if (whyNot is FriendlySpecification)
+    {
+        Console.Write("Close but no cigar.  This cat's mean!");
+    }
+    
+A `SpecificationSet` lets you formally define a specification made up of many
+others.
+
+    public class NerdSpecification : SpecificationSet<Person>
+    {
+        public NerdSpecification() : base(new ISpecification<Person>[]
+        {
+            new ReadsComicsSpecification(),
+            new WatchesBattlestarSpecification(),
+            new PlaysPortalSpecification(),
+            new UsesPeonsSpecification()
+        }){}
+    }
+    
+    // ...
+    
+    var specification = new NerdSpecification();
+    var why = specification.GetAllSatisfiedBy(me);
+    var whyNot = specification.GetAllUnsatisfiedBy(me);
+    if (why.Count() > whyNot.Count())
+    {
+        Console.Write("I am more nerd than not.");
+    }
+    if (specifications.IsSatisfiedBy(me))
+    {
+        Console.Write("I'm all nerd.");
+    }
 	
 Peons.NUnit
 -----------
