@@ -148,7 +148,7 @@ benefits.
         }
     }
     
-    // ...
+... and elsewhere ...
 
     var oldSpecification = new OldSpecification();
     var amputeeSpecification = new AmputeeSpecification();
@@ -187,10 +187,12 @@ when unsatisfied, report the earliest unsatisfied specification.
         }){}
     }
     
-    // ...
+... and elsewhere ...
     
     var specifications = new FriendlyTabbyCatSpecifications();
+    
     var whyNot = specifications.GetFirstUnsatisfiedBy(myPet);
+    
     if (whyNot is CatSpecification)
     {
         Console.Write("Not even a cat!");
@@ -224,7 +226,7 @@ others.
         }){}
     }
     
-    // ...
+... and elsewhere ...
     
     var specification = new NerdSpecification();
     
