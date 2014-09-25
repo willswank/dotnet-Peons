@@ -58,9 +58,11 @@
     <Compile Include="Collections\ReadOnlyDictionary.cs" />
     <Compile Include="Collections\ReadOnlyHashSet.cs" />
     <Compile Include="ObjectExtensions.cs" />
-    <Compile Include="Specification\IOrderedSpecificationSet.cs" />
+    <Compile Include="Specification\ISpecificationSeries.cs" />
     <Compile Include="Specification\ISpecification.cs" />
-    <Compile Include="Specification\OrderedSpecificationSet.cs" />
+    <Compile Include="Specification\ISpecificationSet.cs" />
+    <Compile Include="Specification\SpecificationSet.cs" />
+    <Compile Include="Specification\SpecificationSeries.cs" />
     <Compile Include="Specification\SpecificationExtensions.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

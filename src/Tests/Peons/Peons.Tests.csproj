@@ -57,7 +57,8 @@
     <Compile Include="Internals\Specification\OrSpecificationTests.cs" />
     <Compile Include="Internals\Specification\AndSpecificationTests.cs" />
     <Compile Include="ObjectExtensionsTests.cs" />
-    <Compile Include="Specification\OrderedSpecificationSetTests.cs" />
+    <Compile Include="Specification\SpecificationSetTests.cs" />
+    <Compile Include="Specification\SpecificationSeriesTests.cs" />
     <Compile Include="Specification\SpecificationExtensionsTests.cs" />
     <Compile Include="UnrecognizedValueExceptionTests.cs" />
     <Compile Include="ArgNullExceptionTests.cs" />

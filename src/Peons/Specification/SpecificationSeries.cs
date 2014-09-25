@@ -4,18 +4,18 @@ using System.Linq;
 
 namespace Peons.Specification
 {
-    public abstract class OrderedSpecificationSet<T> : IOrderedSpecificationSet<T>
+    public abstract class SpecificationSeries<T> : ISpecificationSeries<T>
     {
         private readonly ISpecification<T>[] specifications;
 
-        protected OrderedSpecificationSet(ISpecification<T>[] specifications)
+        protected SpecificationSeries(ISpecification<T>[] specifications)
         {
             if (specifications == null)
                 throw new ArgNullException(() => specifications);
             if (specifications.IsEmpty())
                 throw new ArgEmptyException(() => specifications);
 
-            this.specifications = specifications;
+            this.specifications = specifications.ToArray();
         }
 
         public ISpecification<T> this[int index]

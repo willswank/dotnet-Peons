@@ -6,15 +6,15 @@ using System.Collections.Generic;
 namespace Peons.Specification
 {
     [TestFixture]
-    class OrderedSpecificationSetTests
+    class SpecificationSeriesTests
     {
-        OrderedSpecificationSet<object> unit;
+        SpecificationSeries<object> unit;
 
         [Test]
         public void ctor_Null_ThrowsException()
         {
             var action = new TestDelegate(() =>
-                unit = new DummyOrderedSpecificationSet(null));
+                unit = new DummySpecificationSeries(null));
             Assert.Throws<ArgNullException>(action);
         }
 
@@ -23,7 +23,7 @@ namespace Peons.Specification
         {
             var input = new ISpecification<object>[] { };
             var action = new TestDelegate(() =>
-                unit = new DummyOrderedSpecificationSet(input));
+                unit = new DummySpecificationSeries(input));
             Assert.Throws<ArgEmptyException>(action);
         }
 
@@ -36,7 +36,7 @@ namespace Peons.Specification
                 var mock = new Mock<ISpecification<object>>();
                 inputSpecifications.Add(mock.Object);
             }
-            unit = new DummyOrderedSpecificationSet(inputSpecifications.ToArray());
+            unit = new DummySpecificationSeries(inputSpecifications.ToArray());
             for (var i = 0; i < 5; i++)
             {
                 var output = unit[i];
@@ -66,7 +66,7 @@ namespace Peons.Specification
             };
             foreach (var inputSet in inputs)
             {
-                unit = new DummyOrderedSpecificationSet(inputSet);
+                unit = new DummySpecificationSeries(inputSet);
                 Assert.AreEqual(inputSet.Length, unit.Length);
             }
         }
@@ -80,7 +80,7 @@ namespace Peons.Specification
                 var mock = new Mock<ISpecification<object>>();
                 inputSpecifications.Add(mock.Object);
             }
-            unit = new DummyOrderedSpecificationSet(inputSpecifications.ToArray());
+            unit = new DummySpecificationSeries(inputSpecifications.ToArray());
             var output = unit.GetEnumerator();
             var index = 0;
             while (output.MoveNext())
@@ -100,7 +100,7 @@ namespace Peons.Specification
                 var mock = new Mock<ISpecification<object>>();
                 inputSpecifications.Add(mock.Object);
             }
-            unit = new DummyOrderedSpecificationSet(inputSpecifications.ToArray());
+            unit = new DummySpecificationSeries(inputSpecifications.ToArray());
             var output = ((IEnumerable)unit).GetEnumerator();
             var index = 0;
             while (output.MoveNext())
@@ -123,7 +123,7 @@ namespace Peons.Specification
                     .Returns(true);
                 inputSpecifications.Add(mock.Object);
             }
-            unit = new DummyOrderedSpecificationSet(inputSpecifications.ToArray());
+            unit = new DummySpecificationSeries(inputSpecifications.ToArray());
             var output = unit.IsSatisfiedBy(inputCandidate);
             Assert.IsTrue(output);
         }
@@ -141,7 +141,7 @@ namespace Peons.Specification
                     .Returns(satisfied);
                 inputSpecifications.Add(mock.Object);
             }
-            unit = new DummyOrderedSpecificationSet(inputSpecifications.ToArray());
+            unit = new DummySpecificationSeries(inputSpecifications.ToArray());
             var output = unit.IsSatisfiedBy(inputCandidate);
             Assert.IsFalse(output);
         }
@@ -162,14 +162,14 @@ namespace Peons.Specification
                     .Returns(satisfied);
                 inputSpecifications.Add(mock.Object);
             }
-            unit = new DummyOrderedSpecificationSet(inputSpecifications.ToArray());
+            unit = new DummySpecificationSeries(inputSpecifications.ToArray());
             var output = unit.GetFirstUnsatisfiedBy(inputCandidate);
             Assert.AreEqual(inputSpecifications[2], output);
         }
 
-        class DummyOrderedSpecificationSet : OrderedSpecificationSet<object>
+        class DummySpecificationSeries : SpecificationSeries<object>
         {
-            public DummyOrderedSpecificationSet(ISpecification<object>[] specifications)
+            public DummySpecificationSeries(ISpecification<object>[] specifications)
                 : base(specifications) { }
         }
     }
