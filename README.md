@@ -110,7 +110,7 @@ All read-only sets and dictionaries are also `IReadOnlyCollection`s.
 Peons.Specification
 -------------------
 
-### Specifications ###
+### Simple specifications ###
 
 A specification is a rule that either passes or fails when applied to an object.
 Implement your own business rules as `ISpecification`s to gain the syntactic
@@ -172,6 +172,8 @@ benefits:
         Console.Write("Vicious!");
     }
     
+### Specification series ###
+    
 A `SpecificationSeries` lets you define an ordered list of specifications which,
 when unsatisfied, report the earliest unsatisfied specification.
 
@@ -205,6 +207,8 @@ when unsatisfied, report the earliest unsatisfied specification.
     {
         Console.Write("It's a match!");
     }
+    
+### Specification set ###
     
 A `SpecificationSet` lets you formally define a specification made up of many
 others.
