@@ -53,9 +53,12 @@
     <Compile Include="Collections\ReadOnlyDictionaryTests.cs" />
     <Compile Include="Internals\ExpressionExtensionsTests.cs" />
     <Compile Include="IEumerableExtensionsTests.cs" />
+    <Compile Include="Internals\Specification\NotSpecificationTests.cs" />
+    <Compile Include="Internals\Specification\OrSpecificationTests.cs" />
+    <Compile Include="Internals\Specification\AndSpecificationTests.cs" />
     <Compile Include="ObjectExtensionsTests.cs" />
-    <Compile Include="Qualities\QualifierTests.cs" />
-    <Compile Include="Rules\EnforcerTests.cs" />
+    <Compile Include="Specification\OrderedSpecificationSetTests.cs" />
+    <Compile Include="Specification\SpecificationExtensionsTests.cs" />
     <Compile Include="UnrecognizedValueExceptionTests.cs" />
     <Compile Include="ArgNullExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
