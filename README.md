@@ -114,7 +114,7 @@ Peons.Specification
 
 A specification is a rule that either passes or fails when applied to an object.
 Implement your own business rules as `ISpecification`s to gain the syntactic
-benefits:
+benefits.
 
     public class OldSpecification : ISpecification<Dog>
     {
