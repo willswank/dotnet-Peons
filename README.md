@@ -65,8 +65,8 @@ String extensions reverse the language of `string.IsNullOrEmpty` and
     
 ### Object extensions ###
 
-When an object's property may be null, and it's a "has-a" relationship, the code
-can profess this relationship using `Has()`.
+When an object's property may be null, and the object's relationship with that
+property is a "has-a" relationship, the code can profess this using `Has()`.
 
     person.Has(p => p.Nickname)
     
@@ -112,7 +112,7 @@ Peons.Specification
 
 ### Specifications ###
 
-A specification is a rule that either passes or files when applied to an object.
+A specification is a rule that either passes or fails when applied to an object.
 Implement your own business rules as `ISpecification`s to gain the syntactic
 benefits:
 
@@ -201,6 +201,10 @@ when unsatisfied, report the earliest unsatisfied specification.
     {
         Console.Write("Close but no cigar.  This cat's mean!");
     }
+    else if (whyNot == null)
+    {
+        Console.Write("It's a match!");
+    }
     
 A `SpecificationSet` lets you formally define a specification made up of many
 others.
@@ -219,8 +223,10 @@ others.
     // ...
     
     var specification = new NerdSpecification();
+    
     var why = specification.GetAllSatisfiedBy(me);
     var whyNot = specification.GetAllUnsatisfiedBy(me);
+    
     if (why.Count() > whyNot.Count())
     {
         Console.Write("I am more nerd than not.");
