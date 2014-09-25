@@ -1,8 +1,8 @@
 ﻿namespace Peons.Rules
 {
-    public class Enforcer<T> : IEnforcer<T>
+    public class Enforcer : IEnforcer
     {
-        public IRule<T> GetBrokenRule(IRule<T>[] rules, T target)
+        public IRule<T> GetBrokenRule<T>(IRule<T>[] rules, T target)
         {
             if (rules == null)
                 throw new ArgNullException(() => rules);
@@ -15,6 +15,14 @@
                 }
             }
             return null;
+        }
+
+        public IRule<T> GetBrokenRule<T>(IRuleList<T> ruleList, T target)
+        {
+            if (ruleList == null)
+                throw new ArgNullException(() => ruleList);
+
+            return this.GetBrokenRule(ruleList.Rules, target);
         }
     }
 }

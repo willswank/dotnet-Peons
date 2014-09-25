@@ -61,6 +61,7 @@
     <Compile Include="Rules\Enforcer.cs" />
     <Compile Include="Rules\IEnforcer.cs" />
     <Compile Include="Rules\IRule.cs" />
+    <Compile Include="Rules\IRuleList.cs" />
     <Compile Include="StringExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnrecognizedValueException.cs" />

@@ -2,8 +2,8 @@
 
 namespace Peons.Rules
 {
-    public interface IEnforcer<T>
+    public interface IEnforcer
     {
-        IRule<T> GetBrokenRule(IRule<T>[] rules, T target);
+        IRule<T> GetBrokenRule<T>(IRule<T>[] rules, T target);
     }
 }
