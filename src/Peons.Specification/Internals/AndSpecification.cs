@@ -1,6 +1,4 @@
-﻿using Peons.Specification;
-
-namespace Peons.Internals.Specification
+﻿namespace Peons.Specification.Internals
 {
     public class AndSpecification<T> : ISpecification<T>
     {

@@ -1,6 +1,4 @@
-﻿using Peons.Internals.Specification;
-
-namespace Peons.Specification
+﻿namespace Peons.Specification.Internals
 {
     public static class SpecificationExtensions
     {

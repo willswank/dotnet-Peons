@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Peons.Specification;
 
-namespace Peons.Internals.Specification
+namespace Peons.Specification.Internals
 {
     [TestFixture]
     class AndSpecificationTests

@@ -1,6 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
-using Peons.Internals.Specification;
+using Peons.Specification.Internals;
 
 namespace Peons.Specification
 {
