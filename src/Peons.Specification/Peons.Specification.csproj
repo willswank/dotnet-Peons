@@ -33,9 +33,11 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="DependentSpecification.cs" />
     <Compile Include="Internals\AndSpecification.cs" />
     <Compile Include="Internals\NotSpecification.cs" />
     <Compile Include="Internals\OrSpecification.cs" />
+    <Compile Include="IDependentSpecification.cs" />
     <Compile Include="ISpecification.cs" />
     <Compile Include="ISpecificationSeries.cs" />
     <Compile Include="ISpecificationSet.cs" />
