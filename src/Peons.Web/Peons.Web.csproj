@@ -33,6 +33,9 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="HttpContextProvider.cs" />
     <Compile Include="IHttpContextProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

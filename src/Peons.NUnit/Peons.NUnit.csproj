@@ -40,6 +40,9 @@
     <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
     <Compile Include="DataSets\DataRowExtensions.cs" />
     <Compile Include="DataSets\DataTableExtensions.cs" />
     <Compile Include="Dummies.cs" />
