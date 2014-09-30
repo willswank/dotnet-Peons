@@ -210,6 +210,52 @@ when unsatisfied, report the earliest unsatisfied specification.
         Console.Write("It's a match!");
     }
     
+### Dependent specifications ###
+
+Similarly to specification series, dependent specifications report the
+first of their prerequisites that fail.  They can also be unsatisfied,
+themselves, even when their prerequisites are satisfied.
+
+    public class RacecarSpecification : DependentSpecification<MotorVehicle>
+    {
+        public RacecarSpecification()
+            : base(new ISpecification<MotorVehicle>[]
+            {
+                new CarSpecification(),
+                new FastSpecification(),
+                new FlashySpecification()
+            }){}
+
+        protected override bool IsIndividuallySatisfiedBy(MotorVehicle candidate)
+        {
+            return candidate.CanRace;
+        }
+    }
+    
+... and elsewhere ...
+    
+    var whyNot = racecarSpecification.WhyUnsatisfiedBy(vehicle);
+    if (whyNot is CarSpecification)
+    {
+        Console.Write("It's not even a car.");
+    }
+    else if (whyNot is FastSpecification)
+    {
+        Console.Write("It's not even fast.");
+    }
+    else if (whyNot is FlashySpecification)
+    {
+        Console.Write("Close, but it lacks pizzazz.");
+    }
+    else if (whyNot is RacecarSpecification)
+    {
+        Console.Write("It still can't compete.");
+    }
+    else if (whyNot == null)
+    {
+        Console.Write("Congratulations on your fancy racecar.");
+    }
+    
 ### Specification set ###
     
 A `SpecificationSet` lets you formally define a specification made up of many

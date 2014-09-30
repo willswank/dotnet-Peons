@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Peons.Specification
 {
+    /// <summary>
+    /// A specification with ordered prerequisites
+    /// </summary>
     public abstract class DependentSpecification<T> : IDependentSpecification<T>
     {
         private readonly ISpecification<T>[] prerequisites;
