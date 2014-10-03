@@ -41,13 +41,12 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DependentSpecificationTests.cs" />
+    <Compile Include="Taxonomy\DefinitionTests.cs" />
     <Compile Include="Internals\AndSpecificationTests.cs" />
     <Compile Include="Internals\NotSpecificationTests.cs" />
     <Compile Include="Internals\OrSpecificationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpecificationExtensionsTests.cs" />
-    <Compile Include="SpecificationSeriesTests.cs" />
     <Compile Include="SpecificationSetTests.cs" />
   </ItemGroup>
   <ItemGroup>

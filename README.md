@@ -172,90 +172,6 @@ benefits.
         Console.Write("Vicious!");
     }
     
-### Specification series ###
-    
-A `SpecificationSeries` lets you define an ordered list of specifications which,
-when unsatisfied, report the earliest unsatisfied specification.
-
-    public class FriendlyTabbyCatSpecifications : SpecificationSeries<Pet>
-    {
-        public FriendlyTabbyCatSpecifications() : base(new ISpecification<Pet>[]
-        {
-            new CatSpecification(),
-            new TabbySpecification(),
-            new FriendlySpecification()
-        }){}
-    }
-    
-... and elsewhere ...
-    
-    var specifications = new FriendlyTabbyCatSpecifications();
-    
-    var whyNot = specifications.GetFirstUnsatisfiedBy(myPet);
-    
-    if (whyNot is CatSpecification)
-    {
-        Console.Write("Not even a cat!");
-    }
-    else if (whyNot is TabbySpecification)
-    {
-        Console.Write("Not a tabby, yo.");
-    }
-    else if (whyNot is FriendlySpecification)
-    {
-        Console.Write("Close but no cigar.  This cat's mean!");
-    }
-    else if (whyNot == null)
-    {
-        Console.Write("It's a match!");
-    }
-    
-### Dependent specifications ###
-
-Similarly to specification series, dependent specifications report the
-first of their prerequisites that fail.  They can also be unsatisfied,
-themselves, even when their prerequisites are satisfied.
-
-    public class RacecarSpecification : DependentSpecification<MotorVehicle>
-    {
-        public RacecarSpecification()
-            : base(new ISpecification<MotorVehicle>[]
-            {
-                new CarSpecification(),
-                new FastSpecification(),
-                new FlashySpecification()
-            }){}
-
-        protected override bool IsIndividuallySatisfiedBy(MotorVehicle candidate)
-        {
-            return candidate.CanRace;
-        }
-    }
-    
-... and elsewhere ...
-    
-    var whyNot = racecarSpecification.WhyUnsatisfiedBy(vehicle);
-    if (whyNot is CarSpecification)
-    {
-        Console.Write("It's not even a car.");
-    }
-    else if (whyNot is FastSpecification)
-    {
-        Console.Write("It's not even fast.");
-    }
-    else if (whyNot is FlashySpecification)
-    {
-        Console.Write("Close, but it lacks pizzazz.");
-    }
-    else if (whyNot is RacecarSpecification)
-    {
-        Console.Write("It still can't compete.");
-    }
-    else if (whyNot == null)
-    {
-        Console.Write("Congratulations on your fancy racecar.");
-    }
-    
 ### Specification set ###
     
 A `SpecificationSet` lets you formally define a specification made up of many
@@ -286,6 +202,84 @@ others.
     if (specifications.IsSatisfiedBy(me))
     {
         Console.Write("I'm all nerd.");
+    }
+    
+Peons.Specification.Taxonomy
+----------------------------
+    
+### Definitions ###
+
+A definition is a type of specification.  It consists of a genus and a
+differentia.  A genus is a prerequisite specification, a category into which the
+candidate must fit.  The differentia determines the subset of the genus that
+satisfies the definition.
+
+Definitions can be chained by their genuses by "is-a" relationships.  For
+example: a dog is a mammal; a mammal is an animal; an animal is an organism.
+When testing a definition against a candidate, the deepest unsatisfied genus is
+the acute reason why the definition doesn't apply.  If you ask, "Why is this
+tree not a dog?", it's weird to respond, "It's not a mammal", and less weird to
+explain, "It's not even an animal".
+
+    class AnimalSpecification : ISpecification<Organism>
+    {
+        public bool IsSatisfiedBy(Organism candidate)
+        {
+ 	        // ... distinguish animal from plant ...
+        }
+    }
+
+    class MammalSpecification : Definition<Organism>
+    {
+        public MammalSpecification(AnimalSpecification genus) : base(genus)
+        {
+        }
+
+        protected override bool HasOwnDifferentiaSatisfiedBy(Organism candidate)
+        {
+ 	        // ... distinguish mammal from reptile ...
+        }
+    }
+
+    class DogSpecification : Definition<Organism>
+    {
+        public DogSpecification(MammalSpecification genus) : base(genus)
+        {
+        }
+
+        protected override bool HasOwnDifferentiaSatisfiedBy(Dog candidate)
+        {
+            // ... distinguish dog from monkey / human / whale / etc ...
+        }
+    }
+
+... and elsewhere ...
+
+    var animalSpec = new AnimalSpecification();
+    var mammalSpec = new MammalSpecification(animalSpec);
+    var dogSpec = new DogSpecification(mammalSpec);
+
+    var whyNotDog = dogSpec.WhyUnsatisfiedBy(mysteriousOrganism);
+
+    if (whyNotDog is AnimalSpecification)
+    {
+        Console.Write("It's not even an animal.");
+    }
+    else if (whyNotDog is MammalSpecification)
+    {
+        Console.Write("It's not even a mammal.");
+    }
+    else if (whyNotDog is DogSpecification)
+    {
+        Console.Write("Close, but no cigar.");
+    }
+    else if (whyNotDog == null)
+    {
+        Console.Write("You have yourself a dog!");
+    }
+    else
+    {
+        Console.Write("I can't explain.");
     }
 	
 Peons.NUnit
