@@ -1,5 +1,5 @@
-Peons libraries
-===============
+Peons libraries (1.5)
+=====================
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
 awkward syntax and encapsulate common algorithms, so your code can speak more
@@ -394,3 +394,158 @@ functionality with an interface and returns a mockable `HttpContextBase`.
 
 	IHttpContextProvider provider = new HttpContextProvider();
 	HttpContextBase context = provider.GetCurrentHttpContext();
+    
+Peons.DomainEvents
+------------------
+
+Implementing domain events requires smelly boilerplate code in your domain
+model.  Peons.DomainEvents provides the foundation to minimize this necessary
+evil.
+
+Yes, this requires that your domain model be dependent on the
+Peons.DomainEvents assembly, but it is lightweight and addresses cross-cutting
+concerns that would be a pain to re-implement in every domain model.
+
+### Boilerplate ###
+
+In your domain model, create an interface to be the base of all the domain's
+events.  Remember to inherit from `Peons.DomainEvents.IEvent`.
+
+    namespace Cats.Domain
+    {
+        public interface ICatEvent : Peons.DomainEvents.IEvent
+        {
+        }
+    }
+
+Then create a static `EventContext` class for your domain model.  You can
+copy-paste the following boilerplate:
+
+    using Peons.DomainEvents;
+    using System;
+
+    namespace Cats.Domain
+    {
+        public static class EventContext
+        {
+            private static IPublisher<ICatEvent> eventPublisher;
+
+            public static void Initialize(IPublisher<ICatEvent> publisher)
+            {
+                if (eventPublisher != null)
+                {
+                    throw new ApplicationException("The domain events have already been initialized.");
+                }
+                eventPublisher = publisher;
+            }
+
+            public static void Subscribe<T>(IHandler<T> handler) where T : ICatEvent
+            {
+                if (eventPublisher != null)
+                {
+                    eventPublisher.Subscribe<T>(handler);
+                }
+            }
+
+            public static void Subscribe<T>(Action<T> action) where T : ICatEvent
+            {
+                if (eventPublisher != null)
+                {
+                    eventPublisher.Subscribe(action);
+                }
+            }
+
+            public static void Raise<T>(T @event) where T : ICatEvent
+            {
+                if (eventPublisher != null)
+                {
+                    eventPublisher.Publish(@event);
+                }
+            }
+        }
+    }
+    
+Adjust the boilerplate for your domain.
+
+- Update the namespace.
+- Replace `ICatEvent` with your domain's event interface.
+    
+For the sake of unit testing, the `Subscribe()` and `Raise()` methods won't blow
+up when the publisher is null.  The `Subscribe<T>(Action<T> action)` method is
+also primarily for unit testing.
+
+### Your domain ###
+
+With the boilerplate covered, you can implement your specific domain events:
+
+    namespace Cats.Domain
+    {
+        public class FellAsleepEvent : ICatEvent
+        {
+            public FellAsleepEvent(Cat cat)
+            {
+                this.cat = cat;
+            }
+
+            private readonly Cat cat;
+            public Cat Cat
+            {
+                get { return this.cat; }
+            }
+        }
+    }
+
+And raise the events in your domain model:
+
+    namespace Cats.Domain
+    {
+        public class Cat
+        {
+            public string Name { get; set; }
+            
+            // ... more members ...
+
+            public void Sleep()
+            {
+                // ... do whatever here...
+                
+                EventContext.Raise(new FellAsleepEvent(this));
+            }
+        }
+    }
+    
+### Event handlers ###
+
+Later, in some "service" layer, you can implement a handler:
+
+    using Cats.Domain;
+    using Peons.DomainEvents;
+    using System;
+
+    namespace Cats.App
+    {
+        public class NapNotifier : IHandler<FellAsleepEvent>
+        {
+            public void Handle(FellAsleepEvent @event)
+            {
+                var cat = @event.Cat;
+                Console.WriteLine("{0} is taking a nap.", cat.Name);
+            }
+        }
+    }
+    
+### Initialization and subscription ###
+
+At your app's composition root, remember to initialize your domain's event
+context.
+
+    EventContext.Initialize(new NinjectPublisher<ICatEvent>());
+    
+Note: The NinjectPublisher is in the `Peons.DomainEvents.NinjectPublisher`
+assembly and namespace.  Your domain layer doesn't need to worry about
+event-publishing infrastructure, so this dependency is decided by the consuming
+layer.  You can also roll your own publisher by inheriting from `Publisher<T>`.
+
+Assuming your event context is initialized, you can subscribe your handlers:
+
+    EventContext.Subscribe(new NapNotifier());

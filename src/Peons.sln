@@ -35,6 +35,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.Collections.Tests", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.Specification.Tests", "Tests\Peons.Specification.Tests\Peons.Specification.Tests.csproj", "{54DB744E-313F-4E7E-A271-E1BF3E1FA99A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DomainEvents", "Peons.DomainEvents\Peons.DomainEvents.csproj", "{CB0AC0E3-E6BB-466F-8B1C-BD6705F00D4C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DomainEvents.NinjectPublisher", "Peons.DomainEvents.NinjectPublisher\Peons.DomainEvents.NinjectPublisher.csproj", "{D6594019-61F7-40D3-84B9-CF9FA8BCE3CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DomainEvents.Tests", "Tests\Peons.DomainEvents.Tests\Peons.DomainEvents.Tests.csproj", "{3273D4D7-7676-4511-9DE0-3223447C6175}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DomainEvents.NinjectPublisher.Tests", "Tests\Peons.DomainEvents.NinjectPublisher.Tests\Peons.DomainEvents.NinjectPublisher.Tests.csproj", "{3CA0A65E-7FBB-4170-B9E9-B42BDF38F095}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +85,20 @@ Global
 		{54DB744E-313F-4E7E-A271-E1BF3E1FA99A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54DB744E-313F-4E7E-A271-E1BF3E1FA99A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54DB744E-313F-4E7E-A271-E1BF3E1FA99A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB0AC0E3-E6BB-466F-8B1C-BD6705F00D4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB0AC0E3-E6BB-466F-8B1C-BD6705F00D4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB0AC0E3-E6BB-466F-8B1C-BD6705F00D4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB0AC0E3-E6BB-466F-8B1C-BD6705F00D4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6594019-61F7-40D3-84B9-CF9FA8BCE3CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6594019-61F7-40D3-84B9-CF9FA8BCE3CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6594019-61F7-40D3-84B9-CF9FA8BCE3CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6594019-61F7-40D3-84B9-CF9FA8BCE3CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3273D4D7-7676-4511-9DE0-3223447C6175}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3273D4D7-7676-4511-9DE0-3223447C6175}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3273D4D7-7676-4511-9DE0-3223447C6175}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA0A65E-7FBB-4170-B9E9-B42BDF38F095}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA0A65E-7FBB-4170-B9E9-B42BDF38F095}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA0A65E-7FBB-4170-B9E9-B42BDF38F095}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,5 +108,7 @@ Global
 		{E9DD90CD-E533-4231-8018-C29D3B6025D5} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
 		{59DAF89B-BC65-4AA5-8D8F-84FBB749C771} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
 		{54DB744E-313F-4E7E-A271-E1BF3E1FA99A} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
+		{3273D4D7-7676-4511-9DE0-3223447C6175} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
+		{3CA0A65E-7FBB-4170-B9E9-B42BDF38F095} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
 	EndGlobalSection
 EndGlobal
