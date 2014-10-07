@@ -465,7 +465,7 @@ copy-paste the following boilerplate:
         }
     }
     
-Adjust the boilerplate for your domain.
+Adjust the boilerplate for the specifics of your domain.
 
 - Update the namespace.
 - Replace `ICatEvent` with your domain's event interface.
