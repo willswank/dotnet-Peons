@@ -5,11 +5,15 @@
     <assembly path="Peons.NUnit.Tests\bin\Debug\Peons.NUnit.Tests.dll" />
     <assembly path="Peons.Collections.Tests\bin\Debug\Peons.Collections.Tests.dll" />
     <assembly path="Peons.Specification.Tests\bin\Debug\Peons.Specification.Tests.dll" />
+    <assembly path="Peons.DomainEvents.Tests\bin\Debug\Peons.DomainEvents.Tests.dll" />
+    <assembly path="Peons.DomainEvents.NinjectPublisher.Tests\bin\Debug\Peons.DomainEvents.NinjectPublisher.Tests.dll" />
   </Config>
   <Config name="Release" binpathtype="Auto">
     <assembly path="Peons.Tests\bin\Release\Peons.Tests.dll" />
     <assembly path="Peons.NUnit.Tests\bin\Release\Peons.NUnit.Tests.dll" />
     <assembly path="Peons.Collections.Tests\bin\Release\Peons.Collections.Tests.dll" />
     <assembly path="Peons.Specification.Tests\bin\Release\Peons.Specification.Tests.dll" />
+    <assembly path="Peons.DomainEvents.Tests\bin\Release\Peons.DomainEvents.Tests.dll" />
+    <assembly path="Peons.DomainEvents.NinjectPublisher.Tests\bin\Release\Peons.DomainEvents.NinjectPublisher.Tests.dll" />
   </Config>
 </NUnitProject>
