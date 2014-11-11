@@ -107,6 +107,63 @@ A read-only dictionary is, well, just a frozen dictionary.
         
 All read-only sets and dictionaries are also `IReadOnlyCollection`s.
 
+Peons.DiContainers
+------------------
+
+This library provides a simple (and limited) interface to wrap typical DI
+containers.
+
+### Binding in singleton scope ###
+
+    container.Bind<IMeleeWeapon, Katana>();
+
+or
+
+    container.Bind<IMeleeWeapon, Katana>(true);
+    
+### Binding in transient scope ###
+
+    container.Bind<IArrow, WoodenArrow>(false);
+    
+### Multiple bindings with chaining ###
+
+    container
+        .Bind<IMeleeWeapon, Katana>()
+        .Bind<IRangedWeapon, Crossbow>();
+        
+### Binding via definition ###
+
+    var binding = new Binding<IBoomerang, BlueBoomerang>();
+    container.Register(binding);
+    
+### Binding via module ###
+
+First, define a module:
+
+    public class BindingModule : IBindingModule
+    {
+        public void RegisterWith(IBindingRegistrar registrar)
+        {
+            registrar
+                .Bind<IMeleeWeapon, Katana>()
+                .Bind<IRangedWeapon, Crossbow>();
+        }
+    }
+    
+Then register it:
+
+    container.Register(new BindingModule());
+    
+### Wrapped DI containers ###
+
+Peons.DiContainers.Ninject has the NinjectContainer.  You can initialize it like
+so:
+
+    IContainer container = new NinjectContainer(new StandardKernel());
+    
+To use your own favorite DI container, simply implement an IContainer for it.
+Submissions are welcome.
+
 Peons.Specification
 -------------------
 
