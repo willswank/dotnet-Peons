@@ -1,4 +1,4 @@
-Peons libraries (1.5)
+Peons libraries (1.9)
 =====================
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
@@ -107,62 +107,54 @@ A read-only dictionary is, well, just a frozen dictionary.
         
 All read-only sets and dictionaries are also `IReadOnlyCollection`s.
 
-Peons.DiContainers
-------------------
+Peons.DependencyInjection
+-------------------------
 
-This library provides a simple (and limited) interface to wrap typical DI
-containers.
+A library may wish to avoid dependency on a specific DI container.  To
+accomplish this:
 
-### Binding in singleton scope ###
+    - Express internal bindings by implementing `IBindingsModule`.
+    - Use an adapter class to bridge between `IBindingsModule` and the concrete
+        DI container's module type.
+    - Use a wrapper to express the concrete DI container as an `IDiContainer`.
+    - Inject an `IDiContainer` at the consuming app's composition root.
 
-    container.Bind<IMeleeWeapon, Katana>();
+### Declaring dependency bindings ###
 
-or
+Define your dependency bindings by implementing IBindingsModule:
 
-    container.Bind<IMeleeWeapon, Katana>(true);
-    
-### Binding in transient scope ###
-
-    container.Bind<IArrow, WoodenArrow>(false);
-    
-### Multiple bindings with chaining ###
-
-    container
-        .Bind<IMeleeWeapon, Katana>()
-        .Bind<IRangedWeapon, Crossbow>();
-        
-### Binding via definition ###
-
-    var binding = new Binding<IBoomerang, BlueBoomerang>();
-    container.Register(binding);
-    
-### Binding via module ###
-
-First, define a module:
-
-    public class BindingModule : IBindingModule
+    public class DependencyBindings : IBindingsModule
     {
-        public void RegisterWith(IBindingRegistrar registrar)
+        public void ConstructBindings(IBindingBuilder builder)
         {
-            registrar
-                .Bind<IMeleeWeapon, Katana>()
-                .Bind<IRangedWeapon, Crossbow>();
+            builder
+                .Class<IRangedWeapon, Crossbow>()
+                .Class<IMeleeWeapon, Katana>(Scope.Singleton)
+                .Class<IArrow, DummyB>(Scope.Transient)
+                .Const<IDesire>(new HolyGrail());
         }
     }
     
-Then register it:
+The `IBindingBuilder.Class()` method takes an optional parameter to define the
+scope of the resolved object.  The scope is Singleton by default.  The
+`IBindingBuilder.Const<>()` method binds a singleton constant.  These methods
+can be chained.
 
-    container.Register(new BindingModule());
+### Adapting to the chosen DI container ###
+
+Adapters for different DI container implementations are included in separate
+assemblies.  For example, Ninject's adapters are in
+`Peons.DependencyInjection.Adapters.Ninject`.  These enable binding with a
+specific DI container at the composition root.
+
+    IBindingsModule bindings = new MyAppBindings();
+    var adapter = new AdapterNinjectModule(bindings);
+    var kernel = new StandardKernel(adapter);
+    IContainer container = new NinjectContainer(kernel);
+
     
-### Wrapped DI containers ###
-
-Peons.DiContainers.Ninject has the NinjectContainer.  You can initialize it like
-so:
-
-    IContainer container = new NinjectContainer(new StandardKernel());
-    
-To use your own favorite DI container, simply implement an IContainer for it.
-Submissions are welcome.
+To use your DI container of choice, implement an IDiContainer and module adapter
+for it.  Submissions are welcome.
 
 Peons.Specification
 -------------------

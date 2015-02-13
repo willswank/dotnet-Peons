@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Peons.DiContainers.Ninject.Tests")]
+[assembly: AssemblyTitle("Peons.DependencyInjection.Adapters.Ninject.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Peons.DiContainers.Ninject.Tests")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyProduct("Peons.DependencyInjection.Adapters.Ninject.Tests")]
+[assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("d124c36f-33aa-404d-a698-ca48a8b261fc")]
+[assembly: Guid("56a675a0-83d2-4002-8378-741192ae60f4")]
 
 // Version information for an assembly consists of the following four values:
 //

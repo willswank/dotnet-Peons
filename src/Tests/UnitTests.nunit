@@ -7,9 +7,9 @@
     <assembly path="Peons.Specification.Tests\bin\Debug\Peons.Specification.Tests.dll" />
     <assembly path="Peons.DomainEvents.Tests\bin\Debug\Peons.DomainEvents.Tests.dll" />
     <assembly path="Peons.DomainEvents.NinjectPublisher.Tests\bin\Debug\Peons.DomainEvents.NinjectPublisher.Tests.dll" />
-    <assembly path="Peons.DiContainers.Tests\bin\Debug\Peons.DiContainers.Tests.dll" />
-    <assembly path="Peons.DiContainers.Ninject.Tests\bin\Debug\Peons.DiContainers.Ninject.Tests.dll" />
     <assembly path="Peons.Web.Tests\bin\Debug\Peons.Web.Tests.dll" />
+    <assembly path="Peons.DependencyInjection.Tests\bin\Debug\Peons.DependencyInjection.Tests.dll" />
+    <assembly path="Peons.DependencyInjection.Adapters.Ninject.Tests\bin\Debug\Peons.DependencyInjection.Adapters.Ninject.Tests.dll" />
   </Config>
   <Config name="Release" binpathtype="Auto">
     <assembly path="Peons.Tests\bin\Release\Peons.Tests.dll" />
@@ -18,8 +18,8 @@
     <assembly path="Peons.Specification.Tests\bin\Release\Peons.Specification.Tests.dll" />
     <assembly path="Peons.DomainEvents.Tests\bin\Release\Peons.DomainEvents.Tests.dll" />
     <assembly path="Peons.DomainEvents.NinjectPublisher.Tests\bin\Release\Peons.DomainEvents.NinjectPublisher.Tests.dll" />
-    <assembly path="Peons.DiContainers.Tests\bin\Release\Peons.DiContainers.Tests.dll" />
-    <assembly path="Peons.DiContainers.Ninject.Tests\bin\Release\Peons.DiContainers.Ninject.Tests.dll" />
     <assembly path="Peons.Web.Tests\bin\Release\Peons.Web.Tests.dll" />
+    <assembly path="Peons.DependencyInjection.Tests\bin\Release\Peons.DependencyInjection.Tests.dll" />
+    <assembly path="Peons.DependencyInjection.Adapters.Ninject.Tests\bin\Release\Peons.DependencyInjection.Adapters.Ninject.Tests.dll" />
   </Config>
 </NUnitProject>
