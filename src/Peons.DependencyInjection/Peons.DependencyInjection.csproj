@@ -36,10 +36,13 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="RestrictedBindingBuilder.cs" />
     <Compile Include="BindingBuilder.cs" />
     <Compile Include="ClassBinding.cs" />
     <Compile Include="ConstantBinding.cs" />
     <Compile Include="IBinding.cs" />
+    <Compile Include="IRestrictedBindingsModule.cs" />
+    <Compile Include="IRestrictedBindingBuilder.cs" />
     <Compile Include="IBindingBuilder.cs" />
     <Compile Include="IBindingsModule.cs" />
     <Compile Include="IDiContainer.cs" />

@@ -12,6 +12,7 @@ namespace Peons.DependencyInjection
         }
 
         public IBindingBuilder Class<TRequested, TResolved>(Scope scope = Scope.Singleton)
+            where TResolved : TRequested
         {
             var binding = new ClassBinding<TRequested, TResolved>(scope);
             this.bindings.Add(binding);
