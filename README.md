@@ -1,4 +1,4 @@
-Peons 1.10
+Peons 1.11
 ==========
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
@@ -170,6 +170,24 @@ At the composition root:
     
 To use your DI container of choice, implement an IDiContainer and module adapter
 for it.  Submissions are welcome.
+
+### Registries ###
+
+A registry is an IBindingsModule that supports bindings only for descendants of
+a specific type.  This allows compartmentalization of bindings in consuming
+code.
+
+The following code will not compile if `IFoobar` doesn't implement `IHandler`:
+
+    public class HandlerRegistry : IRegistry<IHandler>
+    {
+        public void ConstructBindings(IRegistryBuilder<IHandler> builder)
+        {
+            builder
+                .Class<IFoobar, Foobar>()
+                .Class<IHandler<DummyRequest>, DummyHandler>();
+        }
+    }
 
 Peons.Specification
 -------------------
