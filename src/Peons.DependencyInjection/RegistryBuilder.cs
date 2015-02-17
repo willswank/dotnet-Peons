@@ -2,7 +2,7 @@
 
 namespace Peons.DependencyInjection
 {
-    public abstract class RegistryBase<TRestricted> : BindingBuilder, IRegistryBuilder<TRestricted>
+    public class RegistryBuilder<TRestricted> : BindingBuilder, IRegistryBuilder<TRestricted>
     {
         public new IRegistryBuilder<TRestricted> Class<TRequested, TResolved>(Scope scope = Scope.Singleton)
             where TRequested : TRestricted
