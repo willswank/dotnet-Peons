@@ -45,7 +45,6 @@
     <Compile Include="ArgNotVisibleExceptionTests.cs" />
     <Compile Include="Internals\ExpressionExtensionsTests.cs" />
     <Compile Include="IEumerableExtensionsTests.cs" />
-    <Compile Include="ObjectExtensionsTests.cs" />
     <Compile Include="UnrecognizedValueExceptionTests.cs" />
     <Compile Include="ArgNullExceptionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

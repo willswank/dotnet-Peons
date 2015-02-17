@@ -1,5 +1,5 @@
-Peons libraries (1.9)
-=====================
+Peons 1.10
+==========
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
 awkward syntax and encapsulate common algorithms, so your code can speak more
@@ -8,7 +8,7 @@ eloquently.
 Peons
 -----
 
-Helpers targeting the base platform 
+Helpers for fundamental .NET classes
 
 ### Argument exceptions ###
 
@@ -23,36 +23,43 @@ reliable.
 		{
 			throw new ArgNullException(() => message);
 		}
-		if (message.Length > 50)
-		{
-			throw new ArgOutOfRangeException(() => message,
-					"The length must not exceed 50 characters");
-		}
-		if (message.Contains("it"))
-		{
-			throw new ArgException("The Knights Who Say 'Ni' disapprove.",
-					() => message);
-		}
 		// ...
-	}
+    
+Exceptions include:
+
+- ArgEmptyException
+- ArgException
+- ArgNotVisibleException
+- ArgNullException
+- ArgOutOfRangeException
 	
 ### UnrecognizedValueException ###
 
-An algorithm may switch on an enum type that could gain a new value in a later
-version. Use UnrecognizedValueException in the default case to safely catch
-values that weren't considered.
+When an algorithm switches on a set of expected values, use this exception to
+catch unexpected values.
 
-	switch (contribution.Status)
+	switch (inputChar)
 	{
-		case ContributionStatus.NewlyRecorded;
-			// ...
-			break;
-		case ContributionStatus.Processed:
-			// ...
-			break;
+		case 'Y';
+            return true;
+		case 'N':
+			return false;
 		default:
-			throw new UnrecognizedValueException(contribution.Status);
+			throw new UnrecognizedValueException<bool,char>(inputChar);
 	}
+    
+### IEnumerable extensions ###
+
+Express idiomatic IEnumerable operations more fluently:
+
+    if (authors.IsEmpty())
+    {
+        // ...
+    }
+    if (recipients.IsNullOrEmpty())
+    {
+        // ...
+    }
 	
 ### String extensions ###
 
@@ -62,13 +69,6 @@ String extensions reverse the language of `string.IsNullOrEmpty` and
 	message.IsNullOrEmpty()
 	message.IsNullOrWhiteSpace()
 	message.HasVisibleCharacters() // inverse of IsNullOrWhiteSpace()
-    
-### Object extensions ###
-
-When an object's property may be null, and the object's relationship with that
-property is a "has-a" relationship, the code can profess this using `Has()`.
-
-    person.Has(p => p.Nickname)
     
 ### Clock ###
 
@@ -93,6 +93,20 @@ contains no duplicates.
     var items = new int[] { 4, 8, 15, 16, 23, 42 };
     IReadOnlySet<int> = new ReadOnlyHashSet(items);
     
+### Read-only list ###
+
+A read-only list behaves like an ordered IEnumerable, or a frozen array or list.
+
+    IReadOnlyList<char> items = new ReadOnlyList<char>('f', 'o', 'o');
+    
+    // or
+    
+    IReadOnlyList<char> items = new ReadOnlyList<char>(arrayToFreeze);
+    
+    // or
+    
+    IReadOnlyList<char> items = new ReadOnlyList<char>(listToFreeze);
+    
 ### Read-only dictionary ###
 
 A read-only dictionary is, well, just a frozen dictionary.
@@ -105,19 +119,19 @@ A read-only dictionary is, well, just a frozen dictionary.
     IReadOnlyDictionary<string, int> frozenDictionary
         = new ReadOnlyDictionary<string, int>(writableDictionary);
         
-All read-only sets and dictionaries are also `IReadOnlyCollection`s.
+All read-only collections implement `IReadOnlyCollection`.
 
 Peons.DependencyInjection
 -------------------------
 
-A library may wish to avoid dependency on a specific DI container.  To
-accomplish this:
+A library may wish to avoid internal dependence on a specific DI container, but
+instead let consumers decide which IoC framework to use.  To accomplish this:
 
-    - Express internal bindings by implementing `IBindingsModule`.
-    - Use an adapter class to bridge between `IBindingsModule` and the concrete
-        DI container's module type.
-    - Use a wrapper to express the concrete DI container as an `IDiContainer`.
-    - Inject an `IDiContainer` at the consuming app's composition root.
+- Express internal bindings by implementing `IBindingsModule`.
+- Use an adapter class to bridge between `IBindingsModule` and the concrete
+    DI container's module type.
+- Use a wrapper to express the concrete DI container as an `IDiContainer`.
+- Inject an `IDiContainer` at the consuming app's composition root.
 
 ### Declaring dependency bindings ###
 
@@ -144,14 +158,15 @@ can be chained.
 
 Adapters for different DI container implementations are included in separate
 assemblies.  For example, Ninject's adapters are in
-`Peons.DependencyInjection.Adapters.Ninject`.  These enable binding with a
-specific DI container at the composition root.
+`Peons.DependencyInjection.Adapters.Ninject`.  These enable binding using the
+downstream product's preferred container.
+
+At the composition root:
 
     IBindingsModule bindings = new MyAppBindings();
     var adapter = new AdapterNinjectModule(bindings);
     var kernel = new StandardKernel(adapter);
     IContainer container = new NinjectContainer(kernel);
-
     
 To use your DI container of choice, implement an IDiContainer and module adapter
 for it.  Submissions are welcome.
@@ -443,6 +458,12 @@ functionality with an interface and returns a mockable `HttpContextBase`.
 
 	IHttpContextProvider provider = new HttpContextProvider();
 	HttpContextBase context = provider.GetCurrentHttpContext();
+    
+Determining a user's IP address requires haphazard boilerplate.  The
+`UserIpAddressSniffer` encapsulates this algorithm.
+
+    IUserIpAddressSniffer sniffer = new UserIpAddressSniffer(context);
+    string ipAddress = sniffer.GetUserIpAddress();
     
 Peons.DomainEvents
 ------------------
