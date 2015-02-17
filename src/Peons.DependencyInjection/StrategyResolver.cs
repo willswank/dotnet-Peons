@@ -1,11 +1,11 @@
 ﻿
 namespace Peons.DependencyInjection
 {
-    public class StrategyContainer<TStrategy> : IStrategyContainer<TStrategy>
+    public class StrategyResolver<TStrategy> : IStrategyResolver<TStrategy>
     {
         private readonly IDiContainer diContainer;
 
-        public StrategyContainer(IDiContainer diContainer)
+        public StrategyResolver(IDiContainer diContainer)
         {
             this.diContainer = diContainer;
         }

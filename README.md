@@ -189,8 +189,8 @@ The following code requires that `IFoobar` implements `IHandler`:
         }
     }
     
-A strategy resolver class can rely on `IStrategyContainer<T>` to resolve
-strategies of type `T`.  `StrategyContainer<T>` implements it and wraps
+A strategy resolver class can rely on `IStrategyResolver<T>` to resolve
+strategies of type `T`.  `StrategyResolver<T>` implements it and wraps
 `IDiContainer`.
 
 Peons.Specification
