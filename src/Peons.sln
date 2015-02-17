@@ -53,6 +53,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters.Ninject.Tests", "Tests\Peons.DependencyInjection.Adapters.Ninject.Tests\Peons.DependencyInjection.Adapters.Ninject.Tests.csproj", "{89F72E8A-249B-47E3-AF63-A2EAD6754C90}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters.CastleWindsor", "Peons.DependencyInjection.Adapters.CastleWindsor\Peons.DependencyInjection.Adapters.CastleWindsor.csproj", "{FEB0DBCD-C594-4972-A4AE-5A03C2A21A44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters.CastleWindsor.Tests", "Tests\Peons.DependencyInjection.Adapters.CastleWindsor.Tests\Peons.DependencyInjection.Adapters.CastleWindsor.Tests.csproj", "{B8840C43-F106-42E3-A3D7-FD5ABA0749AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,6 +130,14 @@ Global
 		{89F72E8A-249B-47E3-AF63-A2EAD6754C90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{89F72E8A-249B-47E3-AF63-A2EAD6754C90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{89F72E8A-249B-47E3-AF63-A2EAD6754C90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB0DBCD-C594-4972-A4AE-5A03C2A21A44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEB0DBCD-C594-4972-A4AE-5A03C2A21A44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEB0DBCD-C594-4972-A4AE-5A03C2A21A44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEB0DBCD-C594-4972-A4AE-5A03C2A21A44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8840C43-F106-42E3-A3D7-FD5ABA0749AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8840C43-F106-42E3-A3D7-FD5ABA0749AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8840C43-F106-42E3-A3D7-FD5ABA0749AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8840C43-F106-42E3-A3D7-FD5ABA0749AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,5 +152,6 @@ Global
 		{51B205EB-1AB9-448B-BA70-36A7C4300101} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
 		{F9D665DA-9E99-4A70-AAE6-0877CE17C62D} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
 		{89F72E8A-249B-47E3-AF63-A2EAD6754C90} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
+		{B8840C43-F106-42E3-A3D7-FD5ABA0749AF} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
 	EndGlobalSection
 EndGlobal

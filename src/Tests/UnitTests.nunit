@@ -10,6 +10,7 @@
     <assembly path="Peons.Web.Tests\bin\Debug\Peons.Web.Tests.dll" />
     <assembly path="Peons.DependencyInjection.Tests\bin\Debug\Peons.DependencyInjection.Tests.dll" />
     <assembly path="Peons.DependencyInjection.Adapters.Ninject.Tests\bin\Debug\Peons.DependencyInjection.Adapters.Ninject.Tests.dll" />
+    <assembly path="Peons.DependencyInjection.Adapters.CastleWindsor.Tests\bin\Debug\Peons.DependencyInjection.Adapters.CastleWindsor.Tests.dll" />
   </Config>
   <Config name="Release" binpathtype="Auto">
     <assembly path="Peons.Tests\bin\Release\Peons.Tests.dll" />
@@ -21,5 +22,6 @@
     <assembly path="Peons.Web.Tests\bin\Release\Peons.Web.Tests.dll" />
     <assembly path="Peons.DependencyInjection.Tests\bin\Release\Peons.DependencyInjection.Tests.dll" />
     <assembly path="Peons.DependencyInjection.Adapters.Ninject.Tests\bin\Release\Peons.DependencyInjection.Adapters.Ninject.Tests.dll" />
+    <assembly path="Peons.DependencyInjection.Adapters.CastleWindsor.Tests\bin\Release\Peons.DependencyInjection.Adapters.CastleWindsor.Tests.dll" />
   </Config>
 </NUnitProject>
