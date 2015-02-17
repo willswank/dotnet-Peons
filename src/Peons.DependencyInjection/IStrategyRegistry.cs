@@ -1,7 +1,7 @@
 ﻿
 namespace Peons.DependencyInjection
 {
-    public interface IRegistry<TRestricted>
+    public interface IStrategyRegistry<TRestricted>
     {
         void ConstructBindings(IRegistryBuilder<TRestricted> builder);
     }

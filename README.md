@@ -171,15 +171,15 @@ At the composition root:
 To use your DI container of choice, implement an IDiContainer and module adapter
 for it.  Submissions are welcome.
 
-### Registries ###
+### Strategy registries ###
 
-A registry is an IBindingsModule that supports bindings only for descendants of
-a specific type.  This allows compartmentalization of bindings in consuming
-code.
+A strategy registry is an IBindingsModule that supports bindings only for
+descendants of a specific type.  This allows registering strategies in a
+designated module.
 
-The following code will not compile if `IFoobar` doesn't implement `IHandler`:
+The following code requires that `IFoobar` implements `IHandler`:
 
-    public class HandlerRegistry : IRegistry<IHandler>
+    public class HandlerRegistry : IStrategyRegistry<IHandler>
     {
         public void ConstructBindings(IRegistryBuilder<IHandler> builder)
         {
@@ -188,6 +188,10 @@ The following code will not compile if `IFoobar` doesn't implement `IHandler`:
                 .Class<IHandler<DummyRequest>, DummyHandler>();
         }
     }
+    
+A strategy resolver class can rely on `IStrategyContainer<T>` to resolve
+strategies of type `T`.  `StrategyContainer<T>` implements it and wraps
+`IDiContainer`.
 
 Peons.Specification
 -------------------

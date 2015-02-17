@@ -36,18 +36,20 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
+    <Compile Include="IStrategyContainer.cs" />
     <Compile Include="RegistryBuilder.cs" />
     <Compile Include="BindingBuilder.cs" />
     <Compile Include="ClassBinding.cs" />
     <Compile Include="ConstantBinding.cs" />
     <Compile Include="IBinding.cs" />
-    <Compile Include="IRegistry.cs" />
+    <Compile Include="IStrategyRegistry.cs" />
     <Compile Include="IRegistryBuilder.cs" />
     <Compile Include="IBindingBuilder.cs" />
     <Compile Include="IBindingsModule.cs" />
     <Compile Include="IDiContainer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Scope.cs" />
+    <Compile Include="StrategyContainer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Peons\Peons.csproj">
