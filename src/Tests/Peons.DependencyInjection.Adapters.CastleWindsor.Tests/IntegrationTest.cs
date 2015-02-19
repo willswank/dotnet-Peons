@@ -1,7 +1,7 @@
 ﻿using Castle.Windsor;
 using NUnit.Framework;
 
-namespace Peons.DependencyInjection.Adapters.CastleWindsor.Tests
+namespace Peons.DependencyInjection.Adapters.CastleWindsor
 {
     [TestFixture]
     public class IntegrationTest
@@ -9,11 +9,19 @@ namespace Peons.DependencyInjection.Adapters.CastleWindsor.Tests
         [Test]
         public void Run()
         {
-            var bindings = new DependencyBindings();
-            var adapter = new AdapterCastleWindsorInstaller(bindings);
+            var expected = new object();
+
+            var installers = new CastleWindsorInstallerCollector()
+                .Native(new NativeInstaller(expected))
+                .Adapted(new DependencyBindings())
+                .Adapted(new StrategyRegistry())
+                .Finish();
             var windsorContainer = new WindsorContainer();
-            windsorContainer.Install(adapter);
+            windsorContainer.Install(installers);
             var container = new CastleWindsorContainer(windsorContainer);
+
+            var actual = container.Resolve<object>();
+            Assert.AreEqual(expected, actual);
 
             var dummyA1 = container.Resolve<IDummyA>();
             var dummyA2 = container.Resolve<IDummyA>();
@@ -26,6 +34,14 @@ namespace Peons.DependencyInjection.Adapters.CastleWindsor.Tests
             var dummyC1 = container.Resolve<IDummyC>();
             var dummyC2 = container.Resolve<IDummyC>();
             Assert.AreSame(dummyC1, dummyC2);
+
+            var dummyStrategyA1 = container.Resolve<IDummyStrategyA>();
+            var dummyStrategyA2 = container.Resolve<IDummyStrategyA>();
+            Assert.AreNotSame(dummyStrategyA1, dummyStrategyA2);
+
+            var dummyStrategyB1 = container.Resolve<IDummyStrategyB>();
+            var dummyStrategyB2 = container.Resolve<IDummyStrategyB>();
+            Assert.AreSame(dummyStrategyB1, dummyStrategyB2);
         }
     }
 }

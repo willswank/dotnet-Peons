@@ -1,4 +1,4 @@
-Peons 1.12
+Peons 1.13
 ==========
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
@@ -163,9 +163,12 @@ downstream product's preferred container.
 
 At the composition root:
 
-    IBindingsModule bindings = new MyAppBindings();
-    var adapter = new AdapterNinjectModule(bindings);
-    var kernel = new StandardKernel(adapter);
+    var modules = new NinjectModuleCollector()
+        .Adapted(new MyAppDependencyBindings())
+        .Adapted(new MoreOfMyDependencyBindings())
+        .Native(new SomeNativeNinjectModule())
+        .Finish();
+    var kernel = new StandardKernel(bindings);
     IContainer container = new NinjectContainer(kernel);
     
 To use your DI container of choice, implement an IDiContainer and module adapter

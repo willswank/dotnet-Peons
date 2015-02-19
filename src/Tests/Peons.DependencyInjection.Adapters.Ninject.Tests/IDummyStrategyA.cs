@@ -1,7 +1,7 @@
 ﻿
 namespace Peons.DependencyInjection.Adapters.Ninject
 {
-    public class DummyB : IDummyB
+    public interface IDummyStrategyA : IDummyStrategy
     {
     }
 }

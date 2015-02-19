@@ -4,21 +4,40 @@ using Castle.Windsor;
 
 namespace Peons.DependencyInjection.Adapters.CastleWindsor
 {
-    public class AdapterCastleWindsorInstaller : IWindsorInstaller
+    public class CastleWindsorAdapterInstaller : IWindsorInstaller
     {
-        private readonly IBindingsModule bindingsModule;
-
-        public AdapterCastleWindsorInstaller(IBindingsModule bindingsModule)
+        public static CastleWindsorAdapterInstaller FromModule(IBindingsModule module)
         {
-            this.bindingsModule = bindingsModule;
+            if (module == null)
+                throw new ArgNullException(() => module);
+
+            var builder = new BindingBuilder();
+            module.ConstructBindings(builder);
+            var bindings = builder.Finish();
+            return new CastleWindsorAdapterInstaller(bindings);
+        }
+
+        public static CastleWindsorAdapterInstaller FromRegistry<T>(IStrategyRegistry<T> registry)
+        {
+            if (registry == null)
+                throw new ArgNullException(() => registry);
+
+            var builder = new RegistryBuilder<T>();
+            registry.ConstructBindings(builder);
+            var bindings = builder.Finish();
+            return new CastleWindsorAdapterInstaller(bindings);
+        }
+
+        private readonly IBinding[] bindings;
+
+        private CastleWindsorAdapterInstaller(IBinding[] bindings)
+        {
+            this.bindings = bindings;
         }
 
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
-            var builder = new BindingBuilder();
-            this.bindingsModule.ConstructBindings(builder);
-            var bindings = builder.Finish();
-            foreach (var binding in bindings)
+            foreach (var binding in this.bindings)
             {
                 ComponentRegistration<object> component;
                 var forSyntaxStep = Component.For(binding.RequestedType);

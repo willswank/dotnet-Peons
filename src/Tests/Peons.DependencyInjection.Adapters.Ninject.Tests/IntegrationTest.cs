@@ -1,7 +1,7 @@
 ﻿using Ninject;
 using NUnit.Framework;
 
-namespace Peons.DependencyInjection.Adapters.Ninject.Tests
+namespace Peons.DependencyInjection.Adapters.Ninject
 {
     [TestFixture]
     public class IntegrationTest
@@ -9,10 +9,18 @@ namespace Peons.DependencyInjection.Adapters.Ninject.Tests
         [Test]
         public void Run()
         {
-            var bindings = new DependencyBindings();
-            var adapter = new AdapterNinjectModule(bindings);
-            var kernel = new StandardKernel(adapter);
+            var expected = new object();
+
+            var modules = new NinjectModuleCollector()
+                .Native(new NativeModule(expected))
+                .Adapted(new DependencyBindings())
+                .Adapted(new StrategyRegistry())
+                .Finish();
+            var kernel = new StandardKernel(modules);
             var container = new NinjectContainer(kernel);
+
+            var actual = container.Resolve<object>();
+            Assert.AreEqual(expected, actual);
 
             var dummyA1 = container.Resolve<IDummyA>();
             var dummyA2 = container.Resolve<IDummyA>();
@@ -24,6 +32,14 @@ namespace Peons.DependencyInjection.Adapters.Ninject.Tests
 
             var meaningOfLife = container.Resolve<int>();
             Assert.AreEqual(DependencyBindings.MEANING_OF_LIFE, meaningOfLife);
+
+            var dummyStrategyA1 = container.Resolve<IDummyStrategyA>();
+            var dummyStrategyA2 = container.Resolve<IDummyStrategyA>();
+            Assert.AreNotSame(dummyStrategyA1, dummyStrategyA2);
+
+            var dummyStrategyB1 = container.Resolve<IDummyStrategyB>();
+            var dummyStrategyB2 = container.Resolve<IDummyStrategyB>();
+            Assert.AreSame(dummyStrategyB1, dummyStrategyB2);
         }
     }
 }

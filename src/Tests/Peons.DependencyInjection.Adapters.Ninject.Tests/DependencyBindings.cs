@@ -1,5 +1,5 @@
 ﻿
-namespace Peons.DependencyInjection.Adapters.Ninject.Tests
+namespace Peons.DependencyInjection.Adapters.Ninject
 {
     public class DependencyBindings : IBindingsModule
     {

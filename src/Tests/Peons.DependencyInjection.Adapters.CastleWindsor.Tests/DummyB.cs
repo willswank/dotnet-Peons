@@ -1,5 +1,5 @@
 ﻿
-namespace Peons.DependencyInjection.Adapters.CastleWindsor.Tests
+namespace Peons.DependencyInjection.Adapters.CastleWindsor
 {
     public class DummyB : IDummyB
     {
