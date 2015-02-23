@@ -21,7 +21,7 @@ namespace Peons.DependencyInjection.Adapters.CastleWindsor
             return this;
         }
 
-        public CastleWindsorInstallerCollector Adapted(IBindingsModule module)
+        public CastleWindsorInstallerCollector Module(IBindingsModule module)
         {
             if (module == null)
                 throw new ArgNullException(() => module);
@@ -31,7 +31,7 @@ namespace Peons.DependencyInjection.Adapters.CastleWindsor
             return this;
         }
 
-        public CastleWindsorInstallerCollector Adapted<T>(IStrategyRegistry<T> registry)
+        public CastleWindsorInstallerCollector Registry<T>(IStrategyRegistry<T> registry)
         {
             if (registry == null)
                 throw new ArgNullException(() => registry);

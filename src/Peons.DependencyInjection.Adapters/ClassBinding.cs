@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Peons.DependencyInjection
+namespace Peons.DependencyInjection.Adapters
 {
     public class ClassBinding<TRequested, TResolved> : IBinding
     {

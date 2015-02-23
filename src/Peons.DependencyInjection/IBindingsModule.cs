@@ -3,6 +3,6 @@ namespace Peons.DependencyInjection
 {
     public interface IBindingsModule
     {
-        void ConstructBindings(IBindingBuilder builder);
+        void ConstructBindings(IBindingBuilder bindings);
     }
 }

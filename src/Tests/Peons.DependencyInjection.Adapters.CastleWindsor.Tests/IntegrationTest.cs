@@ -13,8 +13,8 @@ namespace Peons.DependencyInjection.Adapters.CastleWindsor
 
             var installers = new CastleWindsorInstallerCollector()
                 .Native(new NativeInstaller(expected))
-                .Adapted(new DependencyBindings())
-                .Adapted(new StrategyRegistry())
+                .Module(new DependencyBindings())
+                .Registry(new StrategyRegistry())
                 .Finish();
             var windsorContainer = new WindsorContainer();
             windsorContainer.Install(installers);

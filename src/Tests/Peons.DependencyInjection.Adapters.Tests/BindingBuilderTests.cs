@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using System.Linq;
 
-namespace Peons.DependencyInjection
+namespace Peons.DependencyInjection.Adapters
 {
     [TestFixture]
     public class BindingBuilderTests

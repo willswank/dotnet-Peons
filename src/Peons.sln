@@ -42,13 +42,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters.Ninject", "Peons.DependencyInjection.Adapters.Ninject\Peons.DependencyInjection.Adapters.Ninject.csproj", "{B7304177-A3F9-4AC9-8054-2BFCE53355AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Tests", "Tests\Peons.DependencyInjection.Tests\Peons.DependencyInjection.Tests.csproj", "{F9D665DA-9E99-4A70-AAE6-0877CE17C62D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters.Tests", "Tests\Peons.DependencyInjection.Adapters.Tests\Peons.DependencyInjection.Adapters.Tests.csproj", "{F9D665DA-9E99-4A70-AAE6-0877CE17C62D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters.Ninject.Tests", "Tests\Peons.DependencyInjection.Adapters.Ninject.Tests\Peons.DependencyInjection.Adapters.Ninject.Tests.csproj", "{89F72E8A-249B-47E3-AF63-A2EAD6754C90}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters.CastleWindsor", "Peons.DependencyInjection.Adapters.CastleWindsor\Peons.DependencyInjection.Adapters.CastleWindsor.csproj", "{FEB0DBCD-C594-4972-A4AE-5A03C2A21A44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters.CastleWindsor.Tests", "Tests\Peons.DependencyInjection.Adapters.CastleWindsor.Tests\Peons.DependencyInjection.Adapters.CastleWindsor.Tests.csproj", "{B8840C43-F106-42E3-A3D7-FD5ABA0749AF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters", "Peons.DependencyInjection.Adapters\Peons.DependencyInjection.Adapters.csproj", "{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,6 +132,10 @@ Global
 		{B8840C43-F106-42E3-A3D7-FD5ABA0749AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B8840C43-F106-42E3-A3D7-FD5ABA0749AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8840C43-F106-42E3-A3D7-FD5ABA0749AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

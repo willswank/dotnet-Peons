@@ -48,6 +48,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Peons.DependencyInjection.Adapters\Peons.DependencyInjection.Adapters.csproj">
+      <Project>{ac4249d2-ead7-4741-926a-5c5dc62c0adb}</Project>
+      <Name>Peons.DependencyInjection.Adapters</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Peons.DependencyInjection\Peons.DependencyInjection.csproj">
       <Project>{6c658583-149a-44b2-a497-95b32de0cd58}</Project>
       <Name>Peons.DependencyInjection</Name>

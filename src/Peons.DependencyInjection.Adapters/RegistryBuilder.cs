@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Peons.DependencyInjection
+namespace Peons.DependencyInjection.Adapters
 {
     public class RegistryBuilder<TRestricted> : BindingBuilder, IRegistryBuilder<TRestricted>
     {

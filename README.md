@@ -124,14 +124,12 @@ All read-only collections implement `IReadOnlyCollection`.
 Peons.DependencyInjection
 -------------------------
 
-A library may wish to avoid internal dependence on a specific DI container, but
-instead let consumers decide which IoC framework to use.  To accomplish this:
+A library may forgo internal dependence on a specific DI container and instead
+defer to the consumer's preferred IoC framework.  To accomplish this:
 
 - Express internal bindings by implementing `IBindingsModule`.
-- Use an adapter class to bridge between `IBindingsModule` and the concrete
-    DI container's module type.
-- Use a wrapper to express the concrete DI container as an `IDiContainer`.
-- Inject an `IDiContainer` at the consuming app's composition root.
+- Use the `IDiContainer` interface to represent an injected DI container.
+    (However, avoid abusing this as the "Service Locator" pattern.)
 
 ### Declaring dependency bindings ###
 
@@ -139,16 +137,16 @@ Define your dependency bindings by implementing IBindingsModule:
 
     public class DependencyBindings : IBindingsModule
     {
-        public void ConstructBindings(IBindingBuilder builder)
+        public void ConstructBindings(IBindingBuilder bindings)
         {
-            builder
+            bindings
                 .Class<IRangedWeapon, Crossbow>()
                 .Class<IMeleeWeapon, Katana>(Scope.Singleton)
                 .Class<IArrow, DummyB>(Scope.Transient)
                 .Const<IDesire>(new HolyGrail());
         }
     }
-    
+
 The `IBindingBuilder.Class()` method takes an optional parameter to define the
 scope of the resolved object.  The scope is Singleton by default.  The
 `IBindingBuilder.Const<>()` method binds a singleton constant.  These methods
@@ -156,45 +154,47 @@ can be chained.
 
 ### Adapting to the chosen DI container ###
 
-Adapters for different DI container implementations are included in separate
-assemblies.  For example, Ninject's adapters are in
-`Peons.DependencyInjection.Adapters.Ninject`.  These enable binding using the
-downstream product's preferred container.
+The `Peons.DependencyInjection` assembly is lightweight, consisting of a few
+interfaces but no implementation.  The composition root's assembly must
+additionally depend on `Peons.DependencyInjection.Adapters` and the adapter
+assembly corresponding to the chosen IoC framework (such as
+`Peons.DependencyInjection.Adapters.Ninject`).
 
 At the composition root:
 
     var modules = new NinjectModuleCollector()
-        .Adapted(new MyAppDependencyBindings())
-        .Adapted(new MoreOfMyDependencyBindings())
+        .Module(new MyAppDependencyBindings())
+        .Module(new MoreOfMyDependencyBindings())
         .Native(new SomeNativeNinjectModule())
         .Finish();
     var kernel = new StandardKernel(bindings);
-    IContainer container = new NinjectContainer(kernel);
+    IDiContainer container = new NinjectContainer(kernel);
     
 To use your DI container of choice, implement an IDiContainer and module adapter
 for it.  Submissions are welcome.
 
 ### Strategy registries ###
 
-A strategy registry is an IBindingsModule that supports bindings only for
-descendants of a specific type.  This allows registering strategies in a
-designated module.
+A strategy registry is effectively an IBindingsModule that restricts bindings
+to a specific type.  This is useful for registering strategies in a designated
+module.
 
 The following code requires that `IFoobar` implements `IHandler`:
 
     public class HandlerRegistry : IStrategyRegistry<IHandler>
     {
-        public void ConstructBindings(IRegistryBuilder<IHandler> builder)
+        public void ConstructBindings(IRegistryBuilder<IHandler> bindings)
         {
             builder
-                .Class<IFoobar, Foobar>()
-                .Class<IHandler<DummyRequest>, DummyHandler>();
+                .Class<IFoobar, Foobar>();
         }
     }
-    
-A strategy resolver class can rely on `IStrategyResolver<T>` to resolve
-strategies of type `T`.  `StrategyResolver<T>` implements it and wraps
-`IDiContainer`.
+
+Inject `IStrategyResolver<T>` into classes that require resolution of
+strategies, especially when those strategies have dependencies, themselves.
+
+Then remember to bind `IStrategyResolver<T>` to `StrategyResolver<T>`, which
+simply wraps an `IDiContainer` and restricts the types that can be requested.
 
 Peons.Specification
 -------------------

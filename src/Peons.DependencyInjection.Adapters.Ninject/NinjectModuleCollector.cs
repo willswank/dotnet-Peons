@@ -21,7 +21,7 @@ namespace Peons.DependencyInjection.Adapters.Ninject
             return this;
         }
 
-        public NinjectModuleCollector Adapted(IBindingsModule module)
+        public NinjectModuleCollector Module(IBindingsModule module)
         {
             if (module == null)
                 throw new ArgNullException(() => module);
@@ -31,7 +31,7 @@ namespace Peons.DependencyInjection.Adapters.Ninject
             return this;
         }
 
-        public NinjectModuleCollector Adapted<T>(IStrategyRegistry<T> registry)
+        public NinjectModuleCollector Registry<T>(IStrategyRegistry<T> registry)
         {
             if (registry == null)
                 throw new ArgNullException(() => registry);

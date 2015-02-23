@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Peons.DependencyInjection
+namespace Peons.DependencyInjection.Adapters
 {
     [TestFixture]
     public class ConstantBindingTests

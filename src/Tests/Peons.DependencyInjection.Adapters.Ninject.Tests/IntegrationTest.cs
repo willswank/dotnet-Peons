@@ -13,8 +13,8 @@ namespace Peons.DependencyInjection.Adapters.Ninject
 
             var modules = new NinjectModuleCollector()
                 .Native(new NativeModule(expected))
-                .Adapted(new DependencyBindings())
-                .Adapted(new StrategyRegistry())
+                .Module(new DependencyBindings())
+                .Registry(new StrategyRegistry())
                 .Finish();
             var kernel = new StandardKernel(modules);
             var container = new NinjectContainer(kernel);
