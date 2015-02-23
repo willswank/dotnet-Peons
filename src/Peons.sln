@@ -52,6 +52,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters", "Peons.DependencyInjection.Adapters\Peons.DependencyInjection.Adapters.csproj", "{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Tests", "Tests\Peons.DependencyInjection.Tests\Peons.DependencyInjection.Tests.csproj", "{CFA925E7-91CE-4D8D-96FA-2A6091D2DE3A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -136,6 +138,9 @@ Global
 		{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFA925E7-91CE-4D8D-96FA-2A6091D2DE3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFA925E7-91CE-4D8D-96FA-2A6091D2DE3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFA925E7-91CE-4D8D-96FA-2A6091D2DE3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -151,5 +156,6 @@ Global
 		{F9D665DA-9E99-4A70-AAE6-0877CE17C62D} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
 		{89F72E8A-249B-47E3-AF63-A2EAD6754C90} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
 		{B8840C43-F106-42E3-A3D7-FD5ABA0749AF} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
+		{CFA925E7-91CE-4D8D-96FA-2A6091D2DE3A} = {DC9DF6AC-ECD2-4DB4-BCFD-773630763F56}
 	EndGlobalSection
 EndGlobal

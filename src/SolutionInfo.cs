@@ -4,4 +4,4 @@
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.14.*")]
+[assembly: AssemblyVersion("1.15.*")]

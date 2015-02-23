@@ -1,5 +1,5 @@
 ﻿
-namespace Peons.DependencyInjection.Adapters
+namespace Peons.DependencyInjection
 {
     public class StrategyResolver<TStrategy> : IStrategyResolver<TStrategy>
     {
