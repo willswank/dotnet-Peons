@@ -1,7 +1,7 @@
 ﻿
 namespace Peons.Logging
 {
-    public enum LogEventType
+    public enum LogEntryLevel
     {
         /// <summary>
         /// Log level to provide trace level information. Typically used during development.
@@ -20,13 +20,18 @@ namespace Peons.Logging
         Info = 2,
 
         /// <summary>
-        /// Log level for errors.
+        /// Log level for potential problems.
         /// </summary>
-        Error = 3,
+        Warn = 3,
+
+        /// <summary>
+        /// Log level for definitive errors.
+        /// </summary>
+        Error = 4,
 
         /// <summary>
         /// Log level for severe errors...usually un-recoverable.
         /// </summary>
-        Fatal = 4
+        Fatal = 5
     }
 }

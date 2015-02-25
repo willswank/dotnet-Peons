@@ -7,7 +7,7 @@ namespace Peons.Logging
     /// </summary>
     public class LogEntry
     {
-        private readonly LogEventType _eventType;
+        private readonly LogEntryLevel _level;
         private readonly string _message;
         private readonly string _source;
         private readonly Exception _exception;
@@ -15,26 +15,26 @@ namespace Peons.Logging
         /// <summary>
         /// Initializes a new log entry
         /// </summary>
-        /// <param name="eventType"></param>
+        /// <param name="level"></param>
         /// <param name="message"></param>
         /// <param name="source"></param>
         /// <param name="exception"></param>
-        public LogEntry(LogEventType eventType, string message, string source, Exception exception)
+        public LogEntry(LogEntryLevel level, string message, string source, Exception exception)
         {
             _exception = exception;
             _source = source;
             _message = message;
-            _eventType = eventType;
+            _level = level;
         }
 
         /// <summary>
-        /// The type of logged event. Debug, Info, Error, etc.
+        /// The level of logged event. Debug, Info, Error, etc.
         /// </summary>
-        public LogEventType EventType
+        public LogEntryLevel Level
         {
             get
             {
-                return _eventType;
+                return _level;
             }
         }
 
