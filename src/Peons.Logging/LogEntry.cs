@@ -1,5 +1,7 @@
 ﻿using System;
 
+using MESSAGE_GENERATOR = System.Func<string>;
+
 namespace Peons.Logging
 {
     /// <summary>
@@ -9,6 +11,7 @@ namespace Peons.Logging
     {
         private readonly LogEntryLevel _level;
         private readonly string _message;
+        private readonly MESSAGE_GENERATOR _messageGenerator;
         private readonly string _source;
         private readonly Exception _exception;
         
@@ -24,6 +27,80 @@ namespace Peons.Logging
             _exception = exception;
             _source = source;
             _message = message;
+            _level = level;
+        }
+
+        /// <summary>
+        /// Initializes a new log entry
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="message"></param>
+        public LogEntry(LogEntryLevel level, string message)
+        {
+            _message = message;
+            _level = level;
+        }
+
+        /// <summary>
+        /// Initializes a new log entry
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="exception"></param>
+        public LogEntry(LogEntryLevel level, Exception exception)
+        {
+            _exception = exception;
+            _level = level;
+        }
+
+        /// <summary>
+        /// Initializes a new log entry
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="message"></param>
+        /// <param name="exception"></param>
+        public LogEntry(LogEntryLevel level, string message, Exception exception)
+        {
+            _message = message;
+            _exception = exception;
+            _level = level;
+        }
+
+        /// <summary>
+        /// Initializes a new log entry
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="messageGenerator"></param>
+        /// <param name="source"></param>
+        /// <param name="exception"></param>
+        public LogEntry(LogEntryLevel level, MESSAGE_GENERATOR messageGenerator, string source, Exception exception)
+        {
+            _exception = exception;
+            _source = source;
+            _messageGenerator = messageGenerator;
+            _level = level;
+        }
+
+        /// <summary>
+        /// Initializes a new log entry
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="messageGenerator"></param>
+        public LogEntry(LogEntryLevel level, MESSAGE_GENERATOR messageGenerator)
+        {
+            _messageGenerator = messageGenerator;
+            _level = level;
+        }
+
+        /// <summary>
+        /// Initializes a new log entry
+        /// </summary>
+        /// <param name="level"></param>
+        /// <param name="messageGenerator"></param>
+        /// <param name="exception"></param>
+        public LogEntry(LogEntryLevel level, MESSAGE_GENERATOR messageGenerator, Exception exception)
+        {
+            _messageGenerator = messageGenerator;
+            _exception = exception;
             _level = level;
         }
 
@@ -46,6 +123,17 @@ namespace Peons.Logging
             get
             {
                 return _message;
+            }
+        }
+
+        /// <summary>
+        /// The message generator
+        /// </summary>
+        public MESSAGE_GENERATOR MessageGenerator
+        {
+            get
+            {
+                return _messageGenerator;
             }
         }
 
