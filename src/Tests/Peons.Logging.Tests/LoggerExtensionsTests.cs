@@ -9,244 +9,646 @@ namespace Peons.Logging
     [TestFixture]
     public class LoggerExtensionsTests
     {
-        const string STRING = "foobar";
+        const string MESSAGE = "foo";
+        const string ARG0 = "bar";
+        const string ARG1 = "beer";
+        const string ARG2 = "gin";
+        const string ARG3 = "tequila";
         static readonly Exception EXCEPTION = new Exception();
-        static readonly Func<string> GENERATOR = new Func<string>(() => STRING);
+        static readonly Func<string> GENERATOR = new Func<string>(() => "foobar");
 
+        Mock<ILogger> loggerMock;
         ILogger logger;
-        LogEntry loggedEntry;
 
         [SetUp]
         protected void Setup()
         {
-            loggedEntry = null;
-            var loggerMock = new Mock<ILogger>();
-            loggerMock
-                .Setup(m => m.Log(It.IsAny<LogEntry>()))
-                .Callback<LogEntry>(e => loggedEntry = e);
+            loggerMock = new Mock<ILogger>();
             logger = loggerMock.Object;
         }
 
         [Test]
-        public void Trace_Message_LogsEntryWithMessage()
+        public void Trace_Message_LogsEntry()
         {
-            UNIT.Trace(logger, STRING);
-            Assert.AreEqual(STRING, loggedEntry.Message);
+            UNIT.Trace(logger, MESSAGE);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE), Times.Once);
         }
 
         [Test]
-        public void Trace_MessageAndException_LogsEntryWithMessageAndException()
+        public void Trace_FormatAndArg_LogsEntry()
         {
-            UNIT.Trace(logger, STRING, EXCEPTION);
-            Assert.AreEqual(STRING, loggedEntry.Message);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.Trace(logger, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
-        public void Trace_Exception_LogsEntryWithException()
+        public void Trace_FormatAnd2Args_LogsEntry()
         {
-            UNIT.Trace(logger, EXCEPTION);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.Trace(logger, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
-        public void Trace_MessageGenerator_LogsEntryWithMessageGenerator()
+        public void Trace_FormatAnd3Args_LogsEntry()
+        {
+            UNIT.Trace(logger, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void Trace_FormatAnd4Args_LogsEntry()
+        {
+            UNIT.Trace(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void Trace_MessageGenerator_LogsEntry()
         {
             UNIT.Trace(logger, GENERATOR);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Trace, GENERATOR), Times.Once);
         }
 
         [Test]
-        public void Trace_MessageGeneratorAndException_LogsEntryWithMessageGeneratorAndException()
+        public void TraceException_Exception_LogsEntry()
         {
-            UNIT.Trace(logger, GENERATOR, EXCEPTION);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.TraceException(logger, EXCEPTION);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION), Times.Once);
         }
 
         [Test]
-        public void Debug_Message_LogsEntryWithMessage()
+        public void TraceException_ExceptionAndMessage_LogsEntry()
         {
-            UNIT.Debug(logger, STRING);
-            Assert.AreEqual(STRING, loggedEntry.Message);
+            UNIT.TraceException(logger, EXCEPTION, MESSAGE);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
-        public void Debug_MessageAndException_LogsEntryWithMessageAndException()
+        public void TraceException_ExceptionAndFormatAndArg_LogsEntry()
         {
-            UNIT.Debug(logger, STRING, EXCEPTION);
-            Assert.AreEqual(STRING, loggedEntry.Message);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.TraceException(logger, EXCEPTION, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
-        public void Debug_Exception_LogsEntryWithException()
+        public void TraceException_ExceptionAndFormatAnd2Args_LogsEntry()
         {
-            UNIT.Debug(logger, EXCEPTION);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.TraceException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
-        public void Debug_MessageGenerator_LogsEntryWithMessageGenerator()
+        public void TraceException_ExceptionAndFormatAnd3Args_LogsEntry()
+        {
+            UNIT.TraceException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void TraceException_ExceptionAndFormatAnd4Args_LogsEntry()
+        {
+            UNIT.TraceException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void TraceException_ExceptionAndMessageGenerator_LogsEntry()
+        {
+            UNIT.TraceException(logger, EXCEPTION, GENERATOR);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, GENERATOR), Times.Once);
+        }
+
+        [Test]
+        public void Debug_Message_LogsEntry()
+        {
+            UNIT.Debug(logger, MESSAGE);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE), Times.Once);
+        }
+
+        [Test]
+        public void Debug_FormatAndArg_LogsEntry()
+        {
+            UNIT.Debug(logger, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE, ARG0), Times.Once);
+        }
+
+        [Test]
+        public void Debug_FormatAnd2Args_LogsEntry()
+        {
+            UNIT.Debug(logger, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE, ARG0, ARG1), Times.Once);
+        }
+
+        [Test]
+        public void Debug_FormatAnd3Args_LogsEntry()
+        {
+            UNIT.Debug(logger, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void Debug_FormatAnd4Args_LogsEntry()
+        {
+            UNIT.Debug(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void Debug_MessageGenerator_LogsEntry()
         {
             UNIT.Debug(logger, GENERATOR);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Debug, GENERATOR), Times.Once);
         }
 
         [Test]
-        public void Debug_MessageGeneratorAndException_LogsEntryWithMessageGeneratorAndException()
+        public void DebugException_Exception_LogsEntry()
         {
-            UNIT.Debug(logger, GENERATOR, EXCEPTION);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.DebugException(logger, EXCEPTION);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION), Times.Once);
         }
 
         [Test]
-        public void Info_Message_LogsEntryWithMessage()
+        public void DebugException_ExceptionAndMessage_LogsEntry()
         {
-            UNIT.Info(logger, STRING);
-            Assert.AreEqual(STRING, loggedEntry.Message);
+            UNIT.DebugException(logger, EXCEPTION, MESSAGE);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
-        public void Info_MessageAndException_LogsEntryWithMessageAndException()
+        public void DebugException_ExceptionAndFormatAndArg_LogsEntry()
         {
-            UNIT.Info(logger, STRING, EXCEPTION);
-            Assert.AreEqual(STRING, loggedEntry.Message);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.DebugException(logger, EXCEPTION, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
-        public void Info_Exception_LogsEntryWithException()
+        public void DebugException_ExceptionAndFormatAnd2Args_LogsEntry()
         {
-            UNIT.Info(logger, EXCEPTION);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.DebugException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
-        public void Info_MessageGenerator_LogsEntryWithMessageGenerator()
+        public void DebugException_ExceptionAndFormatAnd3Args_LogsEntry()
+        {
+            UNIT.DebugException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void DebugException_ExceptionAndFormatAnd4Args_LogsEntry()
+        {
+            UNIT.DebugException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void DebugException_ExceptionAndMessageGenerator_LogsEntry()
+        {
+            UNIT.DebugException(logger, EXCEPTION, GENERATOR);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, GENERATOR), Times.Once);
+        }
+
+        [Test]
+        public void Info_Message_LogsEntry()
+        {
+            UNIT.Info(logger, MESSAGE);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE), Times.Once);
+        }
+
+        [Test]
+        public void Info_FormatAndArg_LogsEntry()
+        {
+            UNIT.Info(logger, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE, ARG0), Times.Once);
+        }
+
+        [Test]
+        public void Info_FormatAnd2Args_LogsEntry()
+        {
+            UNIT.Info(logger, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE, ARG0, ARG1), Times.Once);
+        }
+
+        [Test]
+        public void Info_FormatAnd3Args_LogsEntry()
+        {
+            UNIT.Info(logger, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void Info_FormatAnd4Args_LogsEntry()
+        {
+            UNIT.Info(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void Info_MessageGenerator_LogsEntry()
         {
             UNIT.Info(logger, GENERATOR);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Info, GENERATOR), Times.Once);
         }
 
         [Test]
-        public void Info_MessageGeneratorAndException_LogsEntryWithMessageGeneratorAndException()
+        public void InfoException_Exception_LogsEntry()
         {
-            UNIT.Info(logger, GENERATOR, EXCEPTION);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.InfoException(logger, EXCEPTION);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION), Times.Once);
         }
 
         [Test]
-        public void Warn_Message_LogsEntryWithMessage()
+        public void InfoException_ExceptionAndMessage_LogsEntry()
         {
-            UNIT.Warn(logger, STRING);
-            Assert.AreEqual(STRING, loggedEntry.Message);
+            UNIT.InfoException(logger, EXCEPTION, MESSAGE);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
-        public void Warn_MessageAndException_LogsEntryWithMessageAndException()
+        public void InfoException_ExceptionAndFormatAndArg_LogsEntry()
         {
-            UNIT.Warn(logger, STRING, EXCEPTION);
-            Assert.AreEqual(STRING, loggedEntry.Message);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.InfoException(logger, EXCEPTION, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
-        public void Warn_Exception_LogsEntryWithException()
+        public void InfoException_ExceptionAndFormatAnd2Args_LogsEntry()
         {
-            UNIT.Warn(logger, EXCEPTION);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.InfoException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
-        public void Warn_MessageGenerator_LogsEntryWithMessageGenerator()
+        public void InfoException_ExceptionAndFormatAnd3Args_LogsEntry()
+        {
+            UNIT.InfoException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void InfoException_ExceptionAndFormatAnd4Args_LogsEntry()
+        {
+            UNIT.InfoException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void InfoException_ExceptionAndMessageGenerator_LogsEntry()
+        {
+            UNIT.InfoException(logger, EXCEPTION, GENERATOR);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, GENERATOR), Times.Once);
+        }
+
+        [Test]
+        public void Warn_Message_LogsEntry()
+        {
+            UNIT.Warn(logger, MESSAGE);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE), Times.Once);
+        }
+
+        [Test]
+        public void Warn_FormatAndArg_LogsEntry()
+        {
+            UNIT.Warn(logger, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE, ARG0), Times.Once);
+        }
+
+        [Test]
+        public void Warn_FormatAnd2Args_LogsEntry()
+        {
+            UNIT.Warn(logger, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE, ARG0, ARG1), Times.Once);
+        }
+
+        [Test]
+        public void Warn_FormatAnd3Args_LogsEntry()
+        {
+            UNIT.Warn(logger, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void Warn_FormatAnd4Args_LogsEntry()
+        {
+            UNIT.Warn(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void Warn_MessageGenerator_LogsEntry()
         {
             UNIT.Warn(logger, GENERATOR);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Warn, GENERATOR), Times.Once);
         }
 
         [Test]
-        public void Warn_MessageGeneratorAndException_LogsEntryWithMessageGeneratorAndException()
+        public void WarnException_Exception_LogsEntry()
         {
-            UNIT.Warn(logger, GENERATOR, EXCEPTION);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.WarnException(logger, EXCEPTION);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION), Times.Once);
         }
 
         [Test]
-        public void Error_Message_LogsEntryWithMessage()
+        public void WarnException_ExceptionAndMessage_LogsEntry()
         {
-            UNIT.Error(logger, STRING);
-            Assert.AreEqual(STRING, loggedEntry.Message);
+            UNIT.WarnException(logger, EXCEPTION, MESSAGE);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
-        public void Error_MessageAndException_LogsEntryWithMessageAndException()
+        public void WarnException_ExceptionAndFormatAndArg_LogsEntry()
         {
-            UNIT.Error(logger, STRING, EXCEPTION);
-            Assert.AreEqual(STRING, loggedEntry.Message);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.WarnException(logger, EXCEPTION, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
-        public void Error_Exception_LogsEntryWithException()
+        public void WarnException_ExceptionAndFormatAnd2Args_LogsEntry()
         {
-            UNIT.Error(logger, EXCEPTION);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.WarnException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
-        public void Error_MessageGenerator_LogsEntryWithMessageGenerator()
+        public void WarnException_ExceptionAndFormatAnd3Args_LogsEntry()
+        {
+            UNIT.WarnException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void WarnException_ExceptionAndFormatAnd4Args_LogsEntry()
+        {
+            UNIT.WarnException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void WarnException_ExceptionAndMessageGenerator_LogsEntry()
+        {
+            UNIT.WarnException(logger, EXCEPTION, GENERATOR);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, GENERATOR), Times.Once);
+        }
+
+        [Test]
+        public void Error_Message_LogsEntry()
+        {
+            UNIT.Error(logger, MESSAGE);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE), Times.Once);
+        }
+
+        [Test]
+        public void Error_FormatAndArg_LogsEntry()
+        {
+            UNIT.Error(logger, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE, ARG0), Times.Once);
+        }
+
+        [Test]
+        public void Error_FormatAnd2Args_LogsEntry()
+        {
+            UNIT.Error(logger, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE, ARG0, ARG1), Times.Once);
+        }
+
+        [Test]
+        public void Error_FormatAnd3Args_LogsEntry()
+        {
+            UNIT.Error(logger, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void Error_FormatAnd4Args_LogsEntry()
+        {
+            UNIT.Error(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void Error_MessageGenerator_LogsEntry()
         {
             UNIT.Error(logger, GENERATOR);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Error, GENERATOR), Times.Once);
         }
 
         [Test]
-        public void Error_MessageGeneratorAndException_LogsEntryWithMessageGeneratorAndException()
+        public void ErrorException_Exception_LogsEntry()
         {
-            UNIT.Error(logger, GENERATOR, EXCEPTION);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.ErrorException(logger, EXCEPTION);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION), Times.Once);
         }
 
         [Test]
-        public void Fatal_Message_LogsEntryWithMessage()
+        public void ErrorException_ExceptionAndMessage_LogsEntry()
         {
-            UNIT.Fatal(logger, STRING);
-            Assert.AreEqual(STRING, loggedEntry.Message);
+            UNIT.ErrorException(logger, EXCEPTION, MESSAGE);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
-        public void Fatal_MessageAndException_LogsEntryWithMessageAndException()
+        public void ErrorException_ExceptionAndFormatAndArg_LogsEntry()
         {
-            UNIT.Fatal(logger, STRING, EXCEPTION);
-            Assert.AreEqual(STRING, loggedEntry.Message);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.ErrorException(logger, EXCEPTION, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
-        public void Fatal_Exception_LogsEntryWithException()
+        public void ErrorException_ExceptionAndFormatAnd2Args_LogsEntry()
         {
-            UNIT.Fatal(logger, EXCEPTION);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.ErrorException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
-        public void Fatal_MessageGenerator_LogsEntryWithMessageGenerator()
+        public void ErrorException_ExceptionAndFormatAnd3Args_LogsEntry()
+        {
+            UNIT.ErrorException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void ErrorException_ExceptionAndFormatAnd4Args_LogsEntry()
+        {
+            UNIT.ErrorException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void ErrorException_ExceptionAndMessageGenerator_LogsEntry()
+        {
+            UNIT.ErrorException(logger, EXCEPTION, GENERATOR);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, GENERATOR), Times.Once);
+        }
+
+        [Test]
+        public void Fatal_Message_LogsEntry()
+        {
+            UNIT.Fatal(logger, MESSAGE);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE), Times.Once);
+        }
+
+        [Test]
+        public void Fatal_FormatAndArg_LogsEntry()
+        {
+            UNIT.Fatal(logger, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE, ARG0), Times.Once);
+        }
+
+        [Test]
+        public void Fatal_FormatAnd2Args_LogsEntry()
+        {
+            UNIT.Fatal(logger, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE, ARG0, ARG1), Times.Once);
+        }
+
+        [Test]
+        public void Fatal_FormatAnd3Args_LogsEntry()
+        {
+            UNIT.Fatal(logger, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void Fatal_FormatAnd4Args_LogsEntry()
+        {
+            UNIT.Fatal(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void Fatal_MessageGenerator_LogsEntry()
         {
             UNIT.Fatal(logger, GENERATOR);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
+            loggerMock
+                .Verify(m => m.Log(LogEntryLevel.Fatal, GENERATOR), Times.Once);
         }
 
         [Test]
-        public void Fatal_MessageGeneratorAndException_LogsEntryWithMessageGeneratorAndException()
+        public void FatalException_Exception_LogsEntry()
         {
-            UNIT.Fatal(logger, GENERATOR, EXCEPTION);
-            Assert.AreEqual(GENERATOR, loggedEntry.MessageGenerator);
-            Assert.AreEqual(EXCEPTION, loggedEntry.Exception);
+            UNIT.FatalException(logger, EXCEPTION);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION), Times.Once);
+        }
+
+        [Test]
+        public void FatalException_ExceptionAndMessage_LogsEntry()
+        {
+            UNIT.FatalException(logger, EXCEPTION, MESSAGE);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE), Times.Once);
+        }
+
+        [Test]
+        public void FatalException_ExceptionAndFormatAndArg_LogsEntry()
+        {
+            UNIT.FatalException(logger, EXCEPTION, MESSAGE, ARG0);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE, ARG0), Times.Once);
+        }
+
+        [Test]
+        public void FatalException_ExceptionAndFormatAnd2Args_LogsEntry()
+        {
+            UNIT.FatalException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
+        }
+
+        [Test]
+        public void FatalException_ExceptionAndFormatAnd3Args_LogsEntry()
+        {
+            UNIT.FatalException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+        }
+
+        [Test]
+        public void FatalException_ExceptionAndFormatAnd4Args_LogsEntry()
+        {
+            UNIT.FatalException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+        }
+
+        [Test]
+        public void FatalException_ExceptionAndMessageGenerator_LogsEntry()
+        {
+            UNIT.FatalException(logger, EXCEPTION, GENERATOR);
+            loggerMock
+                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, GENERATOR), Times.Once);
         }
     }
 }
