@@ -1,4 +1,4 @@
-Peons 1.13
+Peons 1.16
 ==========
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
@@ -81,6 +81,22 @@ an `IClock` so you can test your time-sensitive algorithm.
     
 Note: Although this is inferior to NodaTime, it's easier to retrofit into
 existing products.
+
+Peons.Logging
+-------------
+
+Defer dependence on a specific logging framework by using `ILogger` instead.
+
+    logger.Info("There are {0} models.", 12);
+    
+ILogger has methods for Trace, Debug, Info, Warn, Error, and Fatal levels.
+Various overloads allow exception logging and string formatting.  The actual
+formatting operation is assumed to be deferred until the last possible moment.
+
+`ILogger<T>` allows a different logger to be injected for each class `T`.
+
+The adapters are in separate assemblies, such as Peons.Logging.Adapter.NLog,
+and they should only be instantiated at the composition root.
 
 Peons.Collections
 -----------------
