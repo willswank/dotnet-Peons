@@ -1,7 +1,7 @@
 ﻿
 namespace Peons.Logging
 {
-    public enum LogEntryLevel
+    public enum LogLevel
     {
         /// <summary>
         /// Log level to provide trace level information. Typically used during development.

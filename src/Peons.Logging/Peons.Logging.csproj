@@ -34,7 +34,7 @@
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
     <Compile Include="ILogger.cs" />
-    <Compile Include="LogEntryLevel.cs" />
+    <Compile Include="LogLevel.cs" />
     <Compile Include="LoggerExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

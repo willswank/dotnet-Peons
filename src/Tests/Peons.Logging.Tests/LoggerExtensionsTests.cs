@@ -32,7 +32,7 @@ namespace Peons.Logging
         {
             UNIT.Trace(logger, MESSAGE);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE), Times.Once);
+                .Verify(m => m.Log(LogLevel.Trace, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -40,7 +40,7 @@ namespace Peons.Logging
         {
             UNIT.Trace(logger, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.Log(LogLevel.Trace, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace Peons.Logging
         {
             UNIT.Trace(logger, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.Log(LogLevel.Trace, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Peons.Logging
         {
             UNIT.Trace(logger, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.Log(LogLevel.Trace, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace Peons.Logging
         {
             UNIT.Trace(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Trace, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.Log(LogLevel.Trace, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace Peons.Logging
         {
             UNIT.Trace(logger, GENERATOR);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Trace, GENERATOR), Times.Once);
+                .Verify(m => m.Log(LogLevel.Trace, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -80,7 +80,7 @@ namespace Peons.Logging
         {
             UNIT.TraceException(logger, EXCEPTION);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Trace, EXCEPTION), Times.Once);
         }
 
         [Test]
@@ -88,7 +88,7 @@ namespace Peons.Logging
         {
             UNIT.TraceException(logger, EXCEPTION, MESSAGE);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Trace, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace Peons.Logging
         {
             UNIT.TraceException(logger, EXCEPTION, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Trace, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace Peons.Logging
         {
             UNIT.TraceException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Trace, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -112,7 +112,7 @@ namespace Peons.Logging
         {
             UNIT.TraceException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Trace, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace Peons.Logging
         {
             UNIT.TraceException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Trace, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -128,7 +128,7 @@ namespace Peons.Logging
         {
             UNIT.TraceException(logger, EXCEPTION, GENERATOR);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Trace, EXCEPTION, GENERATOR), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Trace, EXCEPTION, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -136,7 +136,7 @@ namespace Peons.Logging
         {
             UNIT.Debug(logger, MESSAGE);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE), Times.Once);
+                .Verify(m => m.Log(LogLevel.Debug, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -144,7 +144,7 @@ namespace Peons.Logging
         {
             UNIT.Debug(logger, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.Log(LogLevel.Debug, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -152,7 +152,7 @@ namespace Peons.Logging
         {
             UNIT.Debug(logger, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.Log(LogLevel.Debug, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -160,7 +160,7 @@ namespace Peons.Logging
         {
             UNIT.Debug(logger, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.Log(LogLevel.Debug, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -168,7 +168,7 @@ namespace Peons.Logging
         {
             UNIT.Debug(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Debug, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.Log(LogLevel.Debug, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -176,7 +176,7 @@ namespace Peons.Logging
         {
             UNIT.Debug(logger, GENERATOR);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Debug, GENERATOR), Times.Once);
+                .Verify(m => m.Log(LogLevel.Debug, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -184,7 +184,7 @@ namespace Peons.Logging
         {
             UNIT.DebugException(logger, EXCEPTION);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Debug, EXCEPTION), Times.Once);
         }
 
         [Test]
@@ -192,7 +192,7 @@ namespace Peons.Logging
         {
             UNIT.DebugException(logger, EXCEPTION, MESSAGE);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Debug, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -200,7 +200,7 @@ namespace Peons.Logging
         {
             UNIT.DebugException(logger, EXCEPTION, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Debug, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -208,7 +208,7 @@ namespace Peons.Logging
         {
             UNIT.DebugException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Debug, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -216,7 +216,7 @@ namespace Peons.Logging
         {
             UNIT.DebugException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Debug, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -224,7 +224,7 @@ namespace Peons.Logging
         {
             UNIT.DebugException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Debug, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -232,7 +232,7 @@ namespace Peons.Logging
         {
             UNIT.DebugException(logger, EXCEPTION, GENERATOR);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Debug, EXCEPTION, GENERATOR), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Debug, EXCEPTION, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -240,7 +240,7 @@ namespace Peons.Logging
         {
             UNIT.Info(logger, MESSAGE);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE), Times.Once);
+                .Verify(m => m.Log(LogLevel.Info, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -248,7 +248,7 @@ namespace Peons.Logging
         {
             UNIT.Info(logger, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.Log(LogLevel.Info, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -256,7 +256,7 @@ namespace Peons.Logging
         {
             UNIT.Info(logger, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.Log(LogLevel.Info, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -264,7 +264,7 @@ namespace Peons.Logging
         {
             UNIT.Info(logger, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.Log(LogLevel.Info, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -272,7 +272,7 @@ namespace Peons.Logging
         {
             UNIT.Info(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Info, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.Log(LogLevel.Info, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -280,7 +280,7 @@ namespace Peons.Logging
         {
             UNIT.Info(logger, GENERATOR);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Info, GENERATOR), Times.Once);
+                .Verify(m => m.Log(LogLevel.Info, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -288,7 +288,7 @@ namespace Peons.Logging
         {
             UNIT.InfoException(logger, EXCEPTION);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Info, EXCEPTION), Times.Once);
         }
 
         [Test]
@@ -296,7 +296,7 @@ namespace Peons.Logging
         {
             UNIT.InfoException(logger, EXCEPTION, MESSAGE);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Info, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -304,7 +304,7 @@ namespace Peons.Logging
         {
             UNIT.InfoException(logger, EXCEPTION, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Info, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -312,7 +312,7 @@ namespace Peons.Logging
         {
             UNIT.InfoException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Info, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -320,7 +320,7 @@ namespace Peons.Logging
         {
             UNIT.InfoException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Info, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -328,7 +328,7 @@ namespace Peons.Logging
         {
             UNIT.InfoException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Info, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -336,7 +336,7 @@ namespace Peons.Logging
         {
             UNIT.InfoException(logger, EXCEPTION, GENERATOR);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Info, EXCEPTION, GENERATOR), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Info, EXCEPTION, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -344,7 +344,7 @@ namespace Peons.Logging
         {
             UNIT.Warn(logger, MESSAGE);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE), Times.Once);
+                .Verify(m => m.Log(LogLevel.Warn, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -352,7 +352,7 @@ namespace Peons.Logging
         {
             UNIT.Warn(logger, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.Log(LogLevel.Warn, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -360,7 +360,7 @@ namespace Peons.Logging
         {
             UNIT.Warn(logger, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.Log(LogLevel.Warn, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -368,7 +368,7 @@ namespace Peons.Logging
         {
             UNIT.Warn(logger, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.Log(LogLevel.Warn, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -376,7 +376,7 @@ namespace Peons.Logging
         {
             UNIT.Warn(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Warn, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.Log(LogLevel.Warn, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -384,7 +384,7 @@ namespace Peons.Logging
         {
             UNIT.Warn(logger, GENERATOR);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Warn, GENERATOR), Times.Once);
+                .Verify(m => m.Log(LogLevel.Warn, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -392,7 +392,7 @@ namespace Peons.Logging
         {
             UNIT.WarnException(logger, EXCEPTION);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Warn, EXCEPTION), Times.Once);
         }
 
         [Test]
@@ -400,7 +400,7 @@ namespace Peons.Logging
         {
             UNIT.WarnException(logger, EXCEPTION, MESSAGE);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Warn, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -408,7 +408,7 @@ namespace Peons.Logging
         {
             UNIT.WarnException(logger, EXCEPTION, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Warn, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -416,7 +416,7 @@ namespace Peons.Logging
         {
             UNIT.WarnException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Warn, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -424,7 +424,7 @@ namespace Peons.Logging
         {
             UNIT.WarnException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Warn, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -432,7 +432,7 @@ namespace Peons.Logging
         {
             UNIT.WarnException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Warn, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -440,7 +440,7 @@ namespace Peons.Logging
         {
             UNIT.WarnException(logger, EXCEPTION, GENERATOR);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Warn, EXCEPTION, GENERATOR), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Warn, EXCEPTION, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -448,7 +448,7 @@ namespace Peons.Logging
         {
             UNIT.Error(logger, MESSAGE);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE), Times.Once);
+                .Verify(m => m.Log(LogLevel.Error, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -456,7 +456,7 @@ namespace Peons.Logging
         {
             UNIT.Error(logger, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.Log(LogLevel.Error, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -464,7 +464,7 @@ namespace Peons.Logging
         {
             UNIT.Error(logger, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.Log(LogLevel.Error, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -472,7 +472,7 @@ namespace Peons.Logging
         {
             UNIT.Error(logger, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.Log(LogLevel.Error, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -480,7 +480,7 @@ namespace Peons.Logging
         {
             UNIT.Error(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Error, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.Log(LogLevel.Error, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -488,7 +488,7 @@ namespace Peons.Logging
         {
             UNIT.Error(logger, GENERATOR);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Error, GENERATOR), Times.Once);
+                .Verify(m => m.Log(LogLevel.Error, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -496,7 +496,7 @@ namespace Peons.Logging
         {
             UNIT.ErrorException(logger, EXCEPTION);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Error, EXCEPTION), Times.Once);
         }
 
         [Test]
@@ -504,7 +504,7 @@ namespace Peons.Logging
         {
             UNIT.ErrorException(logger, EXCEPTION, MESSAGE);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Error, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -512,7 +512,7 @@ namespace Peons.Logging
         {
             UNIT.ErrorException(logger, EXCEPTION, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Error, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -520,7 +520,7 @@ namespace Peons.Logging
         {
             UNIT.ErrorException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Error, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -528,7 +528,7 @@ namespace Peons.Logging
         {
             UNIT.ErrorException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Error, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -536,7 +536,7 @@ namespace Peons.Logging
         {
             UNIT.ErrorException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Error, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -544,7 +544,7 @@ namespace Peons.Logging
         {
             UNIT.ErrorException(logger, EXCEPTION, GENERATOR);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Error, EXCEPTION, GENERATOR), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Error, EXCEPTION, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -552,7 +552,7 @@ namespace Peons.Logging
         {
             UNIT.Fatal(logger, MESSAGE);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE), Times.Once);
+                .Verify(m => m.Log(LogLevel.Fatal, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -560,7 +560,7 @@ namespace Peons.Logging
         {
             UNIT.Fatal(logger, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.Log(LogLevel.Fatal, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -568,7 +568,7 @@ namespace Peons.Logging
         {
             UNIT.Fatal(logger, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.Log(LogLevel.Fatal, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -576,7 +576,7 @@ namespace Peons.Logging
         {
             UNIT.Fatal(logger, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.Log(LogLevel.Fatal, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -584,7 +584,7 @@ namespace Peons.Logging
         {
             UNIT.Fatal(logger, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Fatal, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.Log(LogLevel.Fatal, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -592,7 +592,7 @@ namespace Peons.Logging
         {
             UNIT.Fatal(logger, GENERATOR);
             loggerMock
-                .Verify(m => m.Log(LogEntryLevel.Fatal, GENERATOR), Times.Once);
+                .Verify(m => m.Log(LogLevel.Fatal, GENERATOR), Times.Once);
         }
 
         [Test]
@@ -600,7 +600,7 @@ namespace Peons.Logging
         {
             UNIT.FatalException(logger, EXCEPTION);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Fatal, EXCEPTION), Times.Once);
         }
 
         [Test]
@@ -608,7 +608,7 @@ namespace Peons.Logging
         {
             UNIT.FatalException(logger, EXCEPTION, MESSAGE);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Fatal, EXCEPTION, MESSAGE), Times.Once);
         }
 
         [Test]
@@ -616,7 +616,7 @@ namespace Peons.Logging
         {
             UNIT.FatalException(logger, EXCEPTION, MESSAGE, ARG0);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE, ARG0), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Fatal, EXCEPTION, MESSAGE, ARG0), Times.Once);
         }
 
         [Test]
@@ -624,7 +624,7 @@ namespace Peons.Logging
         {
             UNIT.FatalException(logger, EXCEPTION, MESSAGE, ARG0, ARG1);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Fatal, EXCEPTION, MESSAGE, ARG0, ARG1), Times.Once);
         }
 
         [Test]
@@ -632,7 +632,7 @@ namespace Peons.Logging
         {
             UNIT.FatalException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Fatal, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2), Times.Once);
         }
 
         [Test]
@@ -640,7 +640,7 @@ namespace Peons.Logging
         {
             UNIT.FatalException(logger, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Fatal, EXCEPTION, MESSAGE, ARG0, ARG1, ARG2, ARG3), Times.Once);
         }
 
         [Test]
@@ -648,7 +648,7 @@ namespace Peons.Logging
         {
             UNIT.FatalException(logger, EXCEPTION, GENERATOR);
             loggerMock
-                .Verify(m => m.LogException(LogEntryLevel.Fatal, EXCEPTION, GENERATOR), Times.Once);
+                .Verify(m => m.LogException(LogLevel.Fatal, EXCEPTION, GENERATOR), Times.Once);
         }
     }
 }

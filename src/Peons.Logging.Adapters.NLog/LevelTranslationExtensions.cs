@@ -1,20 +1,20 @@
-﻿using NLog;
+﻿using NLOG_LEVEL = global::NLog.LogLevel;
 
 namespace Peons.Logging.Adapters.NLog
 {
     public static class LevelTranslationExtensions
     {
-        public static LogLevel Translate(this LogEntryLevel level)
+        public static NLOG_LEVEL Translate(this LogLevel level)
         {
             switch (level)
             {
-                case LogEntryLevel.Trace: return LogLevel.Trace;
-                case LogEntryLevel.Debug: return LogLevel.Debug;
-                case LogEntryLevel.Info: return LogLevel.Info;
-                case LogEntryLevel.Warn: return LogLevel.Warn;
-                case LogEntryLevel.Error: return LogLevel.Error;
-                case LogEntryLevel.Fatal: return LogLevel.Fatal;
-                default: throw new UnrecognizedValueException<LogLevel, LogEntryLevel>(level);
+                case LogLevel.Trace: return NLOG_LEVEL.Trace;
+                case LogLevel.Debug: return NLOG_LEVEL.Debug;
+                case LogLevel.Info: return NLOG_LEVEL.Info;
+                case LogLevel.Warn: return NLOG_LEVEL.Warn;
+                case LogLevel.Error: return NLOG_LEVEL.Error;
+                case LogLevel.Fatal: return NLOG_LEVEL.Fatal;
+                default: throw new UnrecognizedValueException<NLOG_LEVEL, LogLevel>(level);
             }
         }
     }
