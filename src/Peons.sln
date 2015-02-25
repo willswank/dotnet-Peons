@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30110.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons", "Peons\Peons.csproj", "{98D6761C-F66B-4DD4-8080-2A093A17CC82}"
 EndProject
@@ -53,6 +53,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Adapters", "Peons.DependencyInjection.Adapters\Peons.DependencyInjection.Adapters.csproj", "{AC4249D2-EAD7-4741-926A-5C5DC62C0ADB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.DependencyInjection.Tests", "Tests\Peons.DependencyInjection.Tests\Peons.DependencyInjection.Tests.csproj", "{CFA925E7-91CE-4D8D-96FA-2A6091D2DE3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peons.Logging", "Peons.Logging\Peons.Logging.csproj", "{680DEF93-698F-49D3-B691-E1381B07FE4B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,10 @@ Global
 		{CFA925E7-91CE-4D8D-96FA-2A6091D2DE3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFA925E7-91CE-4D8D-96FA-2A6091D2DE3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFA925E7-91CE-4D8D-96FA-2A6091D2DE3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{680DEF93-698F-49D3-B691-E1381B07FE4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{680DEF93-698F-49D3-B691-E1381B07FE4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{680DEF93-698F-49D3-B691-E1381B07FE4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{680DEF93-698F-49D3-B691-E1381B07FE4B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
