@@ -2,9 +2,9 @@
 
 namespace Peons.Logging.Adapters.NLog
 {
-    public class LogEntryLevelTranslator : ILogEntryLevelTranslator
+    public static class LevelTranslationExtensions
     {
-        public LogLevel Translate(LogEntryLevel level)
+        public static LogLevel Translate(this LogEntryLevel level)
         {
             switch (level)
             {

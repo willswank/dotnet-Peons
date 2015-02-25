@@ -39,8 +39,7 @@
     <Compile Include="..\SolutionInfo.cs">
       <Link>Properties\SolutionInfo.cs</Link>
     </Compile>
-    <Compile Include="ILogEntryLevelTranslator.cs" />
-    <Compile Include="LogEntryLevelTranslator.cs" />
+    <Compile Include="LevelTranslationExtensions.cs" />
     <Compile Include="NLogLogger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
