@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
+using System.Runtime.InteropServices;
 
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
-[assembly: AssemblyVersion("1.16.*")]
+[assembly: AssemblyProduct("Peons")]
+[assembly: AssemblyCompany("Wordsworth")]
+[assembly: AssemblyInformationalVersion("1.17")]
+[assembly: ComVisible(false)]

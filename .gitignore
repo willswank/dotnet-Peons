@@ -4,6 +4,7 @@
 # Solution-specific rules
 
 src/packages/
+tools/tempPublished/
 
 # User-specific files
 *.suo

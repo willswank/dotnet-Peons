@@ -1,4 +1,4 @@
-Peons 1.16
+Peons 1.17
 ==========
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
