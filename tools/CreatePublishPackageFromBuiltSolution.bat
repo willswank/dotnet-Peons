@@ -1,7 +1,8 @@
 @echo off
 set startDirectory=%~dp0
 set pathToOutputDirectory=%startDirectory%tempPublished
-if not exist "%pathToOutputDirectory%" md "%pathToOutputDirectory%"
+if exist "%pathToOutputDirectory%" rmdir /s /q "%pathToOutputDirectory%"
+md "%pathToOutputDirectory%"
 set pathToSource=%startDirectory%..\src
 copy "%pathToSource%\Peons\bin\Release\Peons.dll" "%pathToOutputDirectory%"
 copy "%pathToSource%\Peons.Collections\bin\Release\Peons.Collections.dll" "%pathToOutputDirectory%"
@@ -17,3 +18,4 @@ copy "%pathToSource%\Peons.NUnit\bin\Release\Peons.NUnit.dll" "%pathToOutputDire
 copy "%pathToSource%\Peons.NUnit.NodaTime\bin\Release\Peons.NUnit.NodaTime.dll" "%pathToOutputDirectory%"
 copy "%pathToSource%\Peons.Specification\bin\Release\Peons.Specification.dll" "%pathToOutputDirectory%"
 copy "%pathToSource%\Peons.Web\bin\Release\Peons.Web.dll" "%pathToOutputDirectory%"
+pause
