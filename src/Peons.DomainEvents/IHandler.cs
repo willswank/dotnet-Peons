@@ -1,7 +1,7 @@
 ﻿namespace Peons.DomainEvents
 {
-    public interface IHandler<T> where T : IEvent
+    public interface IHandler<TEvent> where TEvent : IEvent
     {
-        void Handle(T @event);
+        void Handle(TEvent @event);
     }
 }

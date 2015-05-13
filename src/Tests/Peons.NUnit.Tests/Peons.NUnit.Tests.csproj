@@ -45,12 +45,13 @@
     <Compile Include="DataSets\DataRowExtensionsTests.cs" />
     <Compile Include="DummiesTests.cs" />
     <Compile Include="IEnumerableValueTypeExtensionsTests.cs" />
-    <Compile Include="Internals\BuilderTests.cs" />
-    <Compile Include="Internals\SetViaSyntaxResultTests.cs" />
-    <Compile Include="Internals\SyntaxResultTests.cs" />
-    <Compile Include="Internals\WithInputsSyntaxResultTests.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\BuilderTests.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\CanSetBySyntaxResultTests.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\SyntaxResultTests.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\WithSyntaxResultTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VerifyPropertyTests.cs" />
+    <Compile Include="AssertGuardsTests.cs" />
+    <Compile Include="AssertPropertyTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Peons.NUnit\Peons.NUnit.csproj">

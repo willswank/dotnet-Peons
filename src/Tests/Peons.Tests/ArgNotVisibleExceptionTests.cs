@@ -16,7 +16,7 @@ namespace Peons
 		[Test]
 		public void ctor_VisibleActualValue_ThrowsException()
 		{
-			IEnumerable<object> inputs = Dummies.VisibleStrings
+			IEnumerable<object> inputs = Dummies.Of.VisibleStrings()
 				.Cast<object>()
 				.Concat(new object[]
 				{
@@ -54,7 +54,7 @@ namespace Peons
 		[Test]
 		public void ctor_WhiteSpaceActualValue_ExplainedInMessage()
 		{
-			foreach (var input in Dummies.WhiteSpaceStrings)
+			foreach (var input in Dummies.Of.WhiteSpaceStrings())
 			{
 				unit = new ArgNotVisibleException(() => input);
 				string expected = string.Format(MESSAGE_FORMAT, "input", "white space");

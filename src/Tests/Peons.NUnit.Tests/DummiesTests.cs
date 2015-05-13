@@ -8,46 +8,25 @@ namespace Peons.NUnit
     public class DummiesTests
     {
 		[Test]
-		public void GetEnumValues_ReturnsAllPossibleValuesOfTypeParameter()
+		public void Enum_EnumType_ReturnsAllEnumValues()
 		{
-			var output = Dummies.GetEnumValues<DateTimeKind>();
+            var expectedValues = Enum.GetValues(typeof(DateTimeKind))
+                .Cast<DateTimeKind>().ToArray();
+			var output = Dummies.Of.Enum<DateTimeKind>();
 			Assert.AreEqual(3, output.Count());
-			Assert.IsTrue(output.Contains(DateTimeKind.Local));
-			Assert.IsTrue(output.Contains(DateTimeKind.Unspecified));
-			Assert.IsTrue(output.Contains(DateTimeKind.Utc));
+            foreach (var expectedValue in expectedValues)
+            {
+                Assert.IsTrue(output.Contains(expectedValue));
+            }
 		}
 
 		[Test]
-		public void For_ReturnsDummiesInstance()
+		public void Enum_NonEnumType_ThrowsException()
 		{
-			var output = Dummies.For as Dummies;
-			Assert.IsNotNull(output);
-		}
-
-		[Test]
-		public void Of_SupportedType_ReturnsDummies()
-		{
-			var output = Dummies.Of<int>();
-			Assert.AreEqual(Dummies.Ints, output);
-		}
-
-		[Test]
-		public void Of_SupportedEnumType_ReturnsDummies()
-		{
-			var output = Dummies.Of<DateTimeKind>();
-			Assert.AreEqual(3, output.Count());
-			Assert.IsTrue(output.Contains(DateTimeKind.Local));
-			Assert.IsTrue(output.Contains(DateTimeKind.Unspecified));
-			Assert.IsTrue(output.Contains(DateTimeKind.Utc));
-		}
-
-		[Test]
-		public void Of_UnsupportedType_ThrowsException()
-		{
-			var action = new TestDelegate(() => Dummies.Of<DummylessType>());
+			var action = new TestDelegate(() => Dummies.Of.Enum<NonEnumType>());
 			Assert.Throws<ArgumentException>(action);
 		}
 
-		struct DummylessType { }
+		struct NonEnumType { }
     }
 }

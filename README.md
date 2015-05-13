@@ -1,4 +1,4 @@
-Peons 1.17
+Peons 1.18
 ==========
 
 Peons are lightweight helper classes for the .NET platform.  They smooth over
@@ -136,256 +136,6 @@ A read-only dictionary is, well, just a frozen dictionary.
         = new ReadOnlyDictionary<string, int>(writableDictionary);
         
 All read-only collections implement `IReadOnlyCollection`.
-
-Peons.DependencyInjection
--------------------------
-
-A library may forgo internal dependence on a specific DI container and instead
-defer to the consumer's preferred IoC framework.  To accomplish this:
-
-- Express internal bindings by implementing `IBindingsModule`.
-- Use the `IDiContainer` interface to represent an injected DI container.
-    (However, avoid abusing this as the "Service Locator" pattern.)
-
-### Declaring dependency bindings ###
-
-Define your dependency bindings by implementing IBindingsModule:
-
-    public class DependencyBindings : IBindingsModule
-    {
-        public void ConstructBindings(IBindingBuilder bindings)
-        {
-            bindings
-                .Class<IRangedWeapon, Crossbow>()
-                .Class<IMeleeWeapon, Katana>(Scope.Singleton)
-                .Class<IArrow, DummyB>(Scope.Transient)
-                .Const<IDesire>(new HolyGrail());
-        }
-    }
-
-The `IBindingBuilder.Class()` method takes an optional parameter to define the
-scope of the resolved object.  The scope is Singleton by default.  The
-`IBindingBuilder.Const<>()` method binds a singleton constant.  These methods
-can be chained.
-
-### Adapting to the chosen DI container ###
-
-The `Peons.DependencyInjection` assembly is lightweight, consisting of a few
-interfaces but no implementation.  The composition root's assembly must
-additionally depend on `Peons.DependencyInjection.Adapters` and the adapter
-assembly corresponding to the chosen IoC framework (such as
-`Peons.DependencyInjection.Adapters.Ninject`).
-
-At the composition root:
-
-    var modules = new NinjectModuleCollector()
-        .Module(new MyAppDependencyBindings())
-        .Module(new MoreOfMyDependencyBindings())
-        .Native(new SomeNativeNinjectModule())
-        .Finish();
-    var kernel = new StandardKernel(bindings);
-    IDiContainer container = new NinjectContainer(kernel);
-    
-To use your DI container of choice, implement an IDiContainer and module adapter
-for it.  Submissions are welcome.
-
-### Strategy registries ###
-
-A strategy registry is effectively an IBindingsModule that restricts bindings
-to a specific type.  This is useful for registering strategies in a designated
-module.
-
-The following code requires that `IFoobar` implements `IHandler`:
-
-    public class HandlerRegistry : IStrategyRegistry<IHandler>
-    {
-        public void ConstructBindings(IRegistryBuilder<IHandler> bindings)
-        {
-            builder
-                .Class<IFoobar, Foobar>();
-        }
-    }
-
-Inject `IStrategyResolver<T>` into classes that require resolution of
-strategies, especially when those strategies have dependencies, themselves.
-
-Then remember to bind `IStrategyResolver<T>` to `StrategyResolver<T>`, which
-simply wraps an `IDiContainer` and restricts the types that can be requested.
-
-Peons.Specification
--------------------
-
-### Simple specifications ###
-
-A specification is a rule that either passes or fails when applied to an object.
-Implement your own business rules as `ISpecification`s to gain the syntactic
-benefits.
-
-    public class OldSpecification : ISpecification<Dog>
-    {
-        public bool IsSatisfiedBy(Dog candidate)
-        {
-            return candidate.Age > 13;
-        }
-    }
-
-    public class AmputeeSpecification : ISpecification<Dog>
-    {
-        public bool IsSatisfiedBy(Dog candidate)
-        {
-            return candidate.LegCount < 4;
-        }
-    }
-
-    public class SquirrelMurdererSpecification : ISpecification<Dog>
-    {
-        public bool IsSatisfiedBy(Dog candidate)
-        {
-            return candidate.MurderedSquirrelCount > 0;
-        }
-    }
-
-    public class CatMurdererSpecification : ISpecification<Dog>
-    {
-        public bool IsSatisfiedBy(Dog candidate)
-        {
-            return candidate.MurderedCatCount > 0;
-        }
-    }
-    
-... and elsewhere ...
-
-    var oldSpecification = new OldSpecification();
-    var amputeeSpecification = new AmputeeSpecification();
-    var squirrelMurdererSpecification = new SquirrelMurdererSpecification();
-    var catMurdererSpecification = new CatMurdererSpecification();
-    
-    if (oldSpecification.IsSatisfiedBy(myDog))
-    {
-        Console.Write("Just lay around.");
-    }
-    if (amputeeSpecification.Not().IsSatisfiedBy(myDog))
-    {
-        Console.Write("Time for a walk.");
-    }
-    if (oldSpecification.And(amputeeSpecification).IsSatisfiedBy(myDog))
-    {
-        Console.Write("Poor dog...");
-    }
-    if (squirrelMurdererSpecification.Or(catMurdererSpecification).IsSatisfiedBy(myDog))
-    {
-        Console.Write("Vicious!");
-    }
-    
-### Specification set ###
-    
-A `SpecificationSet` lets you formally define a specification made up of many
-others.
-
-    public class NerdSpecification : SpecificationSet<Person>
-    {
-        public NerdSpecification() : base(new ISpecification<Person>[]
-        {
-            new ReadsComicsSpecification(),
-            new WatchesBattlestarSpecification(),
-            new PlaysPortalSpecification(),
-            new UsesPeonsSpecification()
-        }){}
-    }
-    
-... and elsewhere ...
-    
-    var specification = new NerdSpecification();
-    
-    var why = specification.GetAllSatisfiedBy(me);
-    var whyNot = specification.GetAllUnsatisfiedBy(me);
-    
-    if (why.Count() > whyNot.Count())
-    {
-        Console.Write("I am more nerd than not.");
-    }
-    if (specifications.IsSatisfiedBy(me))
-    {
-        Console.Write("I'm all nerd.");
-    }
-    
-Peons.Specification.Taxonomy
-----------------------------
-    
-### Definitions ###
-
-A definition is a type of specification.  It consists of a genus and a
-differentia.  A genus is a prerequisite specification, a category into which the
-candidate must fit.  The differentia determines the subset of the genus that
-satisfies the definition.
-
-Definitions can be chained by their genuses by "is-a" relationships.  For
-example: a dog is a mammal; a mammal is an animal; an animal is an organism.
-When testing a definition against a candidate, the deepest unsatisfied genus is
-the acute reason why the definition doesn't apply.  If you ask, "Why is this
-tree not a dog?", it's weird to respond, "It's not a mammal", and less weird to
-explain, "It's not even an animal".
-
-    class AnimalSpecification : ISpecification<Organism>
-    {
-        public bool IsSatisfiedBy(Organism candidate)
-        {
- 	        // ... distinguish animal from plant ...
-        }
-    }
-
-    class MammalSpecification : Definition<Organism>
-    {
-        public MammalSpecification(AnimalSpecification genus) : base(genus)
-        {
-        }
-
-        protected override bool HasOwnDifferentiaSatisfiedBy(Organism candidate)
-        {
- 	        // ... distinguish mammal from reptile ...
-        }
-    }
-
-    class DogSpecification : Definition<Organism>
-    {
-        public DogSpecification(MammalSpecification genus) : base(genus)
-        {
-        }
-
-        protected override bool HasOwnDifferentiaSatisfiedBy(Dog candidate)
-        {
-            // ... distinguish dog from monkey / human / whale / etc ...
-        }
-    }
-
-... and elsewhere ...
-
-    var animalSpec = new AnimalSpecification();
-    var mammalSpec = new MammalSpecification(animalSpec);
-    var dogSpec = new DogSpecification(mammalSpec);
-
-    var whyNotDog = dogSpec.WhyUnsatisfiedBy(mysteriousOrganism);
-
-    if (whyNotDog is AnimalSpecification)
-    {
-        Console.Write("It's not even an animal.");
-    }
-    else if (whyNotDog is MammalSpecification)
-    {
-        Console.Write("It's not even a mammal.");
-    }
-    else if (whyNotDog is DogSpecification)
-    {
-        Console.Write("Close, but no cigar.");
-    }
-    else if (whyNotDog == null)
-    {
-        Console.Write("You have yourself a dog!");
-    }
-    else
-    {
-        Console.Write("I can't explain.");
-    }
 	
 Peons.NUnit
 -----------
@@ -396,75 +146,62 @@ Helpers for unit testing with NUnit
 
 Ranges of values for built-in types, covering broad ranges suitable for testing.
 
-	Dummies.Strings
-	Dummies.Ints
-	Dummies.Shorts
-	Dummies.Longs
-	Dummies.Decimals
-	Dummies.Bools
-	Dummies.DateTimes
-	Dummies.Objects
+	Dummies.Of.Strings()
+	Dummies.Of.Ints()
+	Dummies.Of.Shorts()
+	Dummies.Of.Longs()
+	Dummies.Of.Decimals()
+	Dummies.Of.Bools()
+	Dummies.Of.DateTimes()
+	Dummies.Of.Objects()
 	
 In principle, these include minimums, maximums, one, negative one, zero,
 midpoint, null, and a variety of complex values, when applicable.
 
-#### GetEnumValues<T>() ####
+#### Dummies of enum values ####
 
 Gets an enumeration of all values possible for an enum type.
 
-	var allHttpMethods = Dummies.GetEnumValues<HttpMethod>();
+	Dummies.Of.Enum<HttpMethod>()
 	
-#### Of<T>() ####
-
-An alternate syntax that maps to either Dummies.___s or GetEnumValues<T>().
-
-	var integers = Dummies.Of<int>()
-	var colors = Dummies.Of<ConsoleColor>();
-	
-#### For... ####
+#### Extending Dummies ####
 
 Some solutions may find it useful to attach dummies of their own, proprietary
 classes.  This can be accomplished using extension methods and the `Dummies`
-instance exposed by `Dummies.For`.
+instance exposed by `Dummies.Of`.
 
-	// Given an extension method Whatever and class Whatever
-	IEnumerable<Whatever> dummies = Dummies.For.Whatever;
-	
 ### IEnumerable<T>.AndNull() ###
 
 Converts an IEnumerable of a value type to an IEnumerable of that value type as
 nullable.
 
-	int? intsAndNull = Dummies.Ints.AndNull();
-	HttpMethod methodsAndNull = Dummies.Of<HttpMethod>().AndNull();
+	Dummies.Of.Ints().AndNull();
+	Dummies.Of.Enum<HttpMethod>().AndNull();
+    
+### AssertGuard ###
+
+Assert that guard clauses work for methods with multiple guards concerns.
+
+    AssertGuards
+        .ForSignature<string, int>()
+        .OfMethod((a,b) => new Foo(a,b))
+        .WithDefaults("bar", 1)
+        .WhenArgA(null)
+            .Throw<ArgumentNullException>()
+        .WhenArgA(string.Empty)
+            .Throw<ArgumentException>()
+        .WhenArgB(0)
+            .Throw<ArgumentOutOfRangeException>();
 	
-### VerifyProperty ###
+### AssertProperty ###
 
 Fluent round-trip testing of getter/setter pairs.
 
-	VerifyProperty
-		.WithDummies<int>()
-		.SetVia(v => order.Quantity = v)
-		.GotVia(() => order.Quantity);
-	
-	VerifyProperty
-		.WithNullableDummies<decimal>()
-		.SetVia(v => order.Fee = v)
-		.GotVia(() => order.Fee);
-		
-	VerifyProperty
-		.WithInputs(requests)
-		.SetVia(v => order.SpecialRequests = v)
-		.GotVia(() => order.SpecialRequests);
-		
-Can also test property values assigned by the constructor.
-
-	Order order = null;
-	VerifyProperty
-		.WithInputs(products)
-		.SetVia(v => order = new Order(v))
-		.GotVia(() => order.Product);
-		
+    AssertProperty
+        .With(Dummies.Of.Int())
+        .CanSetBy(order.Quantity = v)
+        .AndGetFrom(() => order.Quantity);
+				
 Peons.NUnit.DataSets
 --------------------
 

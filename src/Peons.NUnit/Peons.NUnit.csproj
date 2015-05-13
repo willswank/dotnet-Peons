@@ -46,18 +46,24 @@
     <Compile Include="DataSets\DataTableExtensions.cs" />
     <Compile Include="Dummies.cs" />
     <Compile Include="IEnumerableValueTypeExtensions.cs" />
-    <Compile Include="Internals\Builder.cs" />
-    <Compile Include="Internals\ISetViaSyntaxResult.cs" />
-    <Compile Include="Internals\IWithInputsSyntaxResult.cs" />
-    <Compile Include="Internals\SetViaSyntaxResult.cs" />
-    <Compile Include="Internals\SyntaxResult.cs" />
-    <Compile Include="Internals\WithInputsSyntaxResult.cs" />
+    <Compile Include="Internals\AssertGuardsSyntax\WhenArgSyntax.cs" />
+    <Compile Include="Internals\AssertGuardsSyntax\WithDefaultsSyntax.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\Builder.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\ICanSetBySyntaxResult.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\IWithSyntaxResult.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\CanSetBySyntaxResult.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\SyntaxResult.cs" />
+    <Compile Include="Internals\AssertGuardsSyntax\ForSignatureSyntax.cs" />
+    <Compile Include="Internals\AssertGuardsSyntax\OfMethodSyntax.cs" />
+    <Compile Include="Internals\AssertPropertySyntax\WithSyntaxResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VerifyProperty.cs" />
+    <Compile Include="AssertGuards.cs" />
+    <Compile Include="AssertProperty.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
